@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
   def shoutout
+    return undo if params[:text].strip == 'undo'
     if (recipient = params[:text].match(/^@\w+/)).nil?
       return render text: "Please supply a username (with @)"
     else
@@ -21,5 +22,14 @@ class ApplicationController < ActionController::Base
     )
 
     render text: "You sent #{shoutout.message} to #{recipient}"
+  end
+
+  def undo
+    Shoutout.where(sender: params[:user_name])
+      .order('created_at DESC')
+      .limit(1)
+      .first
+      .delete
+    render text: "Shoutout undone!"
   end
 end
