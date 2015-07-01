@@ -1,9 +1,11 @@
 <% @shoutouts.each do |s| %>
   <div>
     <p>
+      <%= s.id %>.
       <strong><%= s.sender %></strong> to <strong><%= s.recipient %></strong>
       (<%= distance_of_time_in_words(Time.zone.now, s.created_at) %> ago):
       <%= s.message %>
+      (cheer count: <%= s.cheers.size %>)
     </p>
     <p></p>
   </div>

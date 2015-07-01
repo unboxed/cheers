@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'application#index'
 
   post '/' => 'application#shoutout'
+  post '/cheer' => 'application#cheer'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

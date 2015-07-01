@@ -32,4 +32,15 @@ class ApplicationController < ActionController::Base
       .delete
     render text: "Shoutout undone!"
   end
+
+  def cheer
+    params[:text].scan(/#[0-9]+/).each do |id|
+      past = Cheer
+        .where('sender = ? AND created_at >= ?', params[:user_name], 1.week.ago)
+        .order('created_at ASC')
+      past.limit(1).first.delete if past.size >= 3
+      Cheer.create(sender: params[:user_name], shoutout: Shoutout.find(id[1..-1]))
+    end
+    render text: params[:text].scan(/#[0-9]+/)
+  end
 end
