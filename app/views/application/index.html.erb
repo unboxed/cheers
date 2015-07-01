@@ -1,0 +1,10 @@
+<% @shoutouts.each do |s| %>
+  <div>
+    <p>
+      <strong><%= s.sender %></strong> to <strong><%= s.recipient %></strong>
+      (<%= distance_of_time_in_words(Time.zone.now, s.created_at) %> ago):
+      <%= s.message %>
+    </p>
+    <p></p>
+  </div>
+<% end %>
