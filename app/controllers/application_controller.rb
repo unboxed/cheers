@@ -6,21 +6,20 @@ class ApplicationController < ActionController::Base
   end
 
   def shoutout
-    user = params[:user_name]
-    message = params[:text]
-
-    recipient = message.match(/^@\w+/)
-    if recipient.nil?
+    if (recipient = params[:text].match(/^@\w+/)).nil?
       return render text: "Please supply a username (with @)"
+    else
+      recipient = recipient[0]
     end
-    message = message.gsub(recipient[0], '').strip
+
+    message = params[:text].gsub(recipient, '').strip
 
     shoutout = Shoutout.create(
       sender: params[:user_name],
-      recipient: recipient[0].gsub('@', ''),
+      recipient: recipient.gsub(/\W/, '').strip,
       message: message
     )
 
-    render text: "You sent #{shoutout.message} to #{recipient[0]}"
+    render text: "You sent #{shoutout.message} to #{recipient}"
   end
 end
