@@ -14,8 +14,11 @@ class ApplicationController < ActionController::Base
 
   def shoutout
     if params[:text].strip == 'undo'
-      Shoutout.undo_latest_for_user(params[:user_name])
-      return render text: 'Shoutout undone!'
+      if Shoutout.undo_latest_for_user(params[:user_name])
+        return render text: 'Shoutout undone!'
+      else
+        return render text: 'How about doing something first?'
+      end
     end
 
     if params[:text].include?(params[:user_name])

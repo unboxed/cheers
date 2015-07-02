@@ -3,10 +3,13 @@ class Shoutout < ActiveRecord::Base
   serialize :recipients
 
   def self.undo_latest_for_user(user_name)
-    where(sender: user_name)
+    shoutouts = where(sender: user_name)
       .order('created_at DESC')
-      .limit(1)
-      .first
-      .delete
+    if shoutouts.empty?
+      return false
+    else
+      shoutouts.first.delete
+      return true
+    end
   end
 end
