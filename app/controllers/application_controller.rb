@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
       latest.limit(1).first.delete if latest.size >= 3
       next unless (shoutout = Shoutout.find_by_id(id[1..-1]))
       if shoutout.sender == params[:user_name]
-        return render text: 'Cheeky! Please never *ever* vote for yourself again.'
+        return render text: 'Cheeky! There are other ways to rig this election!'
       end
       Cheer.create(sender: params[:user_name], shoutout: shoutout)
       names << shoutout.sender
