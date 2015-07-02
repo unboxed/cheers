@@ -31,6 +31,10 @@ $(document).ready(function() {
     updateCheckboxes();
     updateCommand();
   });
+
+  $('#commandBox').click(function() {
+    this.setSelectionRange(0, this.value.length);
+  });
 });
 
 function updateCommand() {
