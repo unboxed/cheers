@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
       recipient = recipient[0]
     end
 
+    if params[:text].include?(params[:user_name])
+      return render text: "Share the love, you can't shoutout yourself!"
+    end
+
     message = params[:text].gsub(recipient, '').strip
 
     shoutout = Shoutout.create(
