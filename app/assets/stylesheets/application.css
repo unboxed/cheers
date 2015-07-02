@@ -45,6 +45,11 @@ hr {
   font-size: 4em;
 }
 
+.subtitle {
+  font-family: 'Pacifico', display;
+  font-size: 2em;
+}
+
 .shoutouts {
   margin-top: 150px;
   margin-bottom: 150px;
