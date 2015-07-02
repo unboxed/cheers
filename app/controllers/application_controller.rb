@@ -11,25 +11,17 @@ class ApplicationController < ActionController::Base
       return render text: 'Shoutout undone!'
     end
 
-    if (recipient = params[:text].match(/^@\w+/)).nil?
-      return render text: "Please supply a username (with @)"
-    else
-      recipient = recipient[0]
-    end
-
     if params[:text].include?(params[:user_name])
       return render text: "Share the love, you can't shoutout yourself!"
     end
 
-    message = params[:text].gsub(recipient, '').strip
-
     shoutout = Shoutout.create(
       sender: params[:user_name],
-      recipient: recipient.gsub(/\W/, '').strip,
-      message: message
+      recipients: params[:text].scan(/@\w+/).map { |r| r[1..-1] },
+      message: params[:text].strip
     )
 
-    render text: "You sent #{shoutout.message} to #{recipient}"
+    render text: "Shoutout to #{shoutout.recipients.join(' & ')} saved!"
   end
 
   def cheer

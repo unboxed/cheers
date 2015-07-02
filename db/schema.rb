@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701150046) do
+ActiveRecord::Schema.define(version: 20150702102721) do
 
   create_table "cheers", force: :cascade do |t|
     t.integer  "shoutout_id"
@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 20150701150046) do
 
   create_table "shoutouts", force: :cascade do |t|
     t.string   "sender"
-    t.string   "recipient"
     t.string   "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "recipients"
   end
 
 end
