@@ -1,9 +1,6 @@
-<div class="container">
-  <header>
-    <h1 class="title text-center">Three Cheers</h1>
-    <p class="text-center small">hip hip hooray!</p>
-  </header>
-
+<header>
+  <h1 class="title text-center">Three Cheers</h1>
+  <p class="text-center small">hip hip hooray!</p>
   <p class="text-center">
     <strong><%= @shoutouts.size %></strong> shoutouts
     sent from <strong><%= @shoutouts.pluck(:sender).uniq.size %></strong>
@@ -13,7 +10,9 @@
     <span class="glyphicon glyphicon-user"></span>
     this week.
   </p>
+</header>
 
+<div class="container">
   <div class="shoutouts">
     <hr>
     <% @shoutouts.each do |s| %>

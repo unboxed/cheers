@@ -18,7 +18,12 @@
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
 
 header {
+  position: fixed;
   margin-bottom: 30px;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 0px 30px white;
+  z-index: 100;
 }
 
 header p {
@@ -41,6 +46,7 @@ hr {
 }
 
 .shoutouts {
+  margin-top: 150px;
   margin-bottom: 150px;
 }
 
