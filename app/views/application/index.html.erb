@@ -1,3 +1,5 @@
+<button type="button" class="clear-cheers btn btn-danger">Clear Cheers</button>
+
 <header>
   <h1 class="title text-center">Three Cheers</h1>
   <p class="text-center small">hip hip hooray!</p>
@@ -24,7 +26,7 @@
       <div class="row">
         <div class="col-md-1">
           <p class="lead shoutout-id">#<%= s.id %> <span class="timestamp"><%= time_ago_message(s.created_at) %></span></p>
-            <input type="checkbox" id="<%= s.id %>">
+            <button class="cheer-button btn btn-default" type="submit" id="<%= s.id %>">🎉</button>
         </div>
         <div class="col-md-11">
           <p>

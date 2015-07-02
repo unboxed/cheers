@@ -18,18 +18,14 @@
 var ids = [];
 
 $(document).ready(function() {
-  $('input[type="checkbox"]').click(function() {
-    if($(this).is(":checked")) {
-        if ($.inArray(this.id, ids) === -1) {
-          ids.push(this.id);
-        }
-    }
-    else if($(this).is(":not(:checked)")) {
-        var loc = $.inArray(this.id, ids);
-        ids.splice(loc, 1);
-    }
-    updateCheckboxes();
+  $(".cheer-button").click(function() {
+    ids.push(this.id);
     updateCommand();
+    updateButtons();
+  });
+
+  $(".clear-cheers").click(function() {
+    clearCheers();
   });
 
   $('#commandBox').click(function() {
@@ -45,11 +41,19 @@ function updateCommand() {
   $('#commandBox').val(command);
 }
 
-function updateCheckboxes() {
+function updateButtons() {
   if (ids.length === 3) {
-    $('input[type=checkbox]').not(':checked').attr("disabled", true);
+    $('button[type=submit]').prop('disabled', true);
+    $(".clear-cheers").css("display", "block");
   } else {
-    $('input[type=checkbox]').not(':checked').attr("disabled", false);
+    $('button[type=submit]').prop('disabled', false);
   }
+}
+
+function clearCheers() {
+  ids = [];
+  updateCommand();
+  updateButtons();
+  $(".clear-cheers").css("display", "none");
 }
 

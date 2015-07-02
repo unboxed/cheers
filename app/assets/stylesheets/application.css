@@ -68,6 +68,20 @@ hr {
   margin-bottom: 0px;
 }
 
+.cheer-button {
+  padding-right: 5px;
+  padding-bottom: 5px;
+  font-size: 20px
+}
+
+.clear-cheers {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 200;
+  display: none;
+}
+
 footer {
   position: fixed;
   bottom: 0px;
