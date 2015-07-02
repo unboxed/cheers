@@ -113,6 +113,13 @@ footer {
   box-shadow: 0px 0px 5px #FFD700;
 }
 
+.help-button {
+  position: fixed;
+  z-index: 200;
+  top: 10px;
+  left: 10px;
+}
+
 @media only screen
   and (max-device-width: 667px)
   and (-webkit-min-device-pixel-ratio: 2) {
