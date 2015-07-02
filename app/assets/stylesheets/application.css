@@ -77,7 +77,7 @@ footer {
 }
 
 #commandBox {
-  max-width: 600px;
+  max-width: 90vw;
   margin: 10px auto;
   display: block;
   padding: 50px;
