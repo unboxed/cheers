@@ -34,16 +34,20 @@ class ApplicationController < ActionController::Base
       .limit(1)
       .first
       .delete
-    render text: "Shoutout undone!"
+    render text: 'Shoutout undone!'
   end
 
   def cheer
+    if params[:text].strip == 'undo'
+      latest = Cheer.latest_for_user(params[:user_name])
+      latest.last.delete unless latest.empty?
+      return render text: 'Cheer undone!'
+    end
+
     names = []
     params[:text].scan(/#[0-9]+/).each do |id|
-      past = Cheer
-        .where('sender = ? AND created_at >= ?', params[:user_name], 1.week.ago)
-        .order('created_at ASC')
-      past.limit(1).first.delete if past.size >= 3
+      latest = Cheer.latest_for_user(params[:user_name])
+      latest.limit(1).first.delete if latest.size >= 3
       shoutout = Shoutout.find(id[1..-1])
       Cheer.create(sender: params[:user_name], shoutout: shoutout)
       names << shoutout.sender
