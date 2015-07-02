@@ -1,14 +1,23 @@
+<h1 class="title text-center">Three Cheers</h1>
+<p class="text-center"><strong><%= @shoutouts.size %></strong> shoutouts this week</p>
+<hr>
 <% @shoutouts.each do |s| %>
-  <div>
-    <p>
-      Shoutout #<%= s.id %> (<%= distance_of_time_in_words(Time.zone.now, s.created_at) %> ago):
-      <br/>
-      <strong><%= s.sender %></strong> to <strong><%= s.recipients.join(', ') %></strong>
-      <br/>
-      "<%= s.message %>"
-      <br/>
-      cheer count: <%= s.cheers.size %>
-    </p>
-    <hr>
+  <div class="row">
+    <div class="col-md-1">
+      <p class="lead shoutout-id">#<%= s.id %> <span class="timestamp"><%= time_ago_message(s.created_at) %></span></p>
+    </div>
+    <div class="col-md-11">
+      <p>
+        <strong><%= s.sender %></strong> made a shoutout to
+        <% s.recipients.each_with_index do |r, index| %>
+          <strong><%= r %></strong><%= (index < s.recipients.size - 2) ? ',' : '' %>
+          <%= (index == s.recipients.size - 2) ? '&' : '' %>
+        <% end %>
+      </p>
+      <div class="cheer well">
+        <p class="lead"><%= highlight(s.message, s.recipients).html_safe %></p>
+      </div>
+    </div>
   </div>
+  <hr>
 <% end %>

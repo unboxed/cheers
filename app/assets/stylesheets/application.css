@@ -13,3 +13,43 @@
  *= require_tree .
  *= require_self
  */
+
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
+@import url(http://fonts.googleapis.com/css?family=Fredoka+One);
+
+h1 {
+  margin-bottom: 50px;
+}
+
+mark {
+  background-color: #FFFFCE;
+  border: 1px solid #E6E65C;
+  border-radius: 3px;
+}
+
+hr {
+  margin: 15px 0px;
+}
+
+.title {
+  font-family: 'Fredoka One', display;
+  font-size: 4em;
+}
+
+.shoutout-id {
+  margin-bottom: 5px;
+}
+
+.timestamp {
+  color: Grey;
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+
+.cheer {
+  margin-bottom: 0px;
+}
+
+.cheer .lead {
+  margin-bottom: 0px;
+}
