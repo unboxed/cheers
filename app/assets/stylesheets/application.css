@@ -87,6 +87,14 @@ hr {
   display: none;
 }
 
+.help-button {
+  position: fixed;
+  z-index: 200;
+  top: 10px;
+  left: 10px;
+}
+
+
 footer {
   position: fixed;
   bottom: 0px;
@@ -113,17 +121,7 @@ footer {
   box-shadow: 0px 0px 5px #FFD700;
 }
 
-.help-button {
-  position: fixed;
-  z-index: 200;
-  top: 10px;
-  left: 10px;
-}
-
-@media only screen
-  and (max-device-width: 667px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+@media only screen and (max-device-width: 667px) {
   #commandBox {
     padding: 20px 10px;
     font-size: 20px;
