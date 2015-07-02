@@ -1,5 +1,15 @@
 <h1 class="title text-center">Three Cheers</h1>
-<p class="text-center"><strong><%= @shoutouts.size %></strong> shoutouts this week</p>
+
+<p class="text-center">
+  <strong><%= @shoutouts.size %></strong> shoutouts
+  sent from <strong><%= @shoutouts.pluck(:sender).uniq.size %></strong>
+  <span class="glyphicon glyphicon-user"></span>
+  to
+  <strong><%= @shoutouts.pluck(:recipients).reduce(:+).uniq.size %></strong>
+  <span class="glyphicon glyphicon-user"></span>
+  this week.
+</p>
+
 <hr>
 <% @shoutouts.each do |s| %>
   <div class="row">
