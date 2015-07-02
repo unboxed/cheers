@@ -49,13 +49,16 @@ class ApplicationController < ActionController::Base
     params[:text].scan(/#[0-9]+/).each do |id|
       latest.limit(1).first.delete if latest.size >= 3
       next unless (shoutout = Shoutout.find_by_id(id[1..-1]))
+      if shoutout.sender == params[:user_name]
+        return render text: 'Cheeky! Please never *ever* vote for yourself again.'
+      end
       Cheer.create(sender: params[:user_name], shoutout: shoutout)
       names << shoutout.sender
     end
     if names.empty?
       render text: "Woah there, how about making some valid cheers next time?"
     else
-      render text: "You cheered for #{names.uniq.join(' & ')}!"
+      render text: "Hip Hip! You cheered for #{names.uniq.join(' & ')}!"
     end
   end
 end
