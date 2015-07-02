@@ -1,20 +1,25 @@
 <header>
   <h1 class="title text-center">Three Cheers</h1>
   <p class="text-center small">hip hip hooray!</p>
-  <p class="text-center">
-    <strong><%= @shoutouts.size %></strong> shoutouts
-    sent from <strong><%= @shoutouts.pluck(:sender).uniq.size %></strong>
-    <span class="glyphicon glyphicon-user"></span>
-    to
-    <strong><%= @shoutouts.pluck(:recipients).reduce(:+).uniq.size %></strong>
-    <span class="glyphicon glyphicon-user"></span>
-    this week.
-  </p>
+  <% unless @shoutouts.empty? %>
+    <p class="text-center">
+      <strong><%= @shoutouts.size %></strong> shoutouts
+      sent from <strong><%= @shoutouts.pluck(:sender).uniq.size %></strong>
+      <span class="glyphicon glyphicon-user"></span>
+      to
+      <strong><%= @shoutouts.pluck(:recipients).reduce(:+).uniq.size %></strong>
+      <span class="glyphicon glyphicon-user"></span>
+      this week.
+    </p>
+  <% end %>
 </header>
 
 <div class="container">
   <div class="shoutouts">
     <hr>
+    <% if @shoutouts.empty? %>
+      <p class="text-center">All is quiet</p>
+    <% end %>
     <% @shoutouts.each do |s| %>
       <div class="row">
         <div class="col-md-1">
