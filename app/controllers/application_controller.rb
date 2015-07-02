@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  http_basic_authenticate_with name: 'cheerybot', password: 'share the love', only: :admin
   protect_from_forgery with: :null_session
 
   def index
