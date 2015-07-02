@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Admin</h1>
+  <% @shoutouts.each do |s| %>
+    <div class="row <%= (s.cheers.size == @winning_count) ? 'top' : '' %>">
+      <div class="col-md-1">
+        <p class="lead shoutout-id">#<%= s.id %> <span class="timestamp"><%= time_ago_message(s.created_at) %></span></p>
+      </div>
+      <div class="col-md-11">
+        <p>
+          <strong><%= s.sender %></strong> made a shoutout to
+          <% s.recipients.each_with_index do |r, index| %>
+            <strong><%= r %></strong><%= (index < s.recipients.size - 2) ? ',' : '' %>
+            <%= (index == s.recipients.size - 2) ? '&' : '' %>
+          <% end %>
+
+          <% unless s.cheers.empty? %>
+            <span class="glyphicon glyphicon-glass"></span><%= s.cheers.size %>
+          <% end %>
+        </p>
+        <div class="cheer well">
+          <p class="lead"><%= highlight(s.message, s.recipients).html_safe %></p>
+        </div>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

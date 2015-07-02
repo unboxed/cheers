@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
     @shoutouts = Shoutout.order('created_at DESC').all
   end
 
+  def admin
+    @shoutouts = Shoutout.order('created_at DESC').all
+      .sort_by { |s| s.cheers.size }
+      .reverse
+    @winning_count = @shoutouts.first.cheers.size
+  end
+
   def shoutout
     if params[:text].strip == 'undo'
       Shoutout.undo_latest_for_user(params[:user_name])

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'application#index'
+  get '/admin' => 'application#admin'
+
 
   post '/' => 'application#shoutout'
   post '/cheer' => 'application#cheer'
