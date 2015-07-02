@@ -14,3 +14,38 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+var ids = [];
+
+$(document).ready(function() {
+  $('input[type="checkbox"]').click(function() {
+    if($(this).is(":checked")) {
+        if ($.inArray(this.id, ids) === -1) {
+          ids.push(this.id);
+        }
+    }
+    else if($(this).is(":not(:checked)")) {
+        var loc = $.inArray(this.id, ids);
+        ids.splice(loc, 1);
+    }
+    updateCheckboxes();
+    updateCommand();
+  });
+});
+
+function updateCommand() {
+  var command = "/cheer ";
+  for (var i in ids) {
+    command = command + "#" + ids[i] + " ";
+  }
+  $('#commandBox').val(command);
+}
+
+function updateCheckboxes() {
+  if (ids.length === 3) {
+    $('input[type=checkbox]').not(':checked').attr("disabled", true);
+  } else {
+    $('input[type=checkbox]').not(':checked').attr("disabled", false);
+  }
+}
+
