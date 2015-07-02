@@ -1,39 +1,48 @@
-<header>
-  <h1 class="title text-center">Three Cheers</h1>
-  <p class="text-center small">hip hip hooray!</p>
-</header>
+<div class="container">
+  <header>
+    <h1 class="title text-center">Three Cheers</h1>
+    <p class="text-center small">hip hip hooray!</p>
+  </header>
 
-<p class="text-center">
-  <strong><%= @shoutouts.size %></strong> shoutouts
-  sent from <strong><%= @shoutouts.pluck(:sender).uniq.size %></strong>
-  <span class="glyphicon glyphicon-user"></span>
-  to
-  <strong><%= @shoutouts.pluck(:recipients).reduce(:+).uniq.size %></strong>
-  <span class="glyphicon glyphicon-user"></span>
-  this week.
-</p>
+  <p class="text-center">
+    <strong><%= @shoutouts.size %></strong> shoutouts
+    sent from <strong><%= @shoutouts.pluck(:sender).uniq.size %></strong>
+    <span class="glyphicon glyphicon-user"></span>
+    to
+    <strong><%= @shoutouts.pluck(:recipients).reduce(:+).uniq.size %></strong>
+    <span class="glyphicon glyphicon-user"></span>
+    this week.
+  </p>
 
-<hr>
-<% @shoutouts.each do |s| %>
-  <div class="row">
-    <div class="col-md-1">
-      <p class="lead shoutout-id">#<%= s.id %> <span class="timestamp"><%= time_ago_message(s.created_at) %></span></p>
-        <input type="checkbox" id="<%= s.id %>">
-    </div>
-    <div class="col-md-11">
-      <p>
-        <strong><%= s.sender %></strong> made a shoutout to
-        <% s.recipients.each_with_index do |r, index| %>
-          <strong><%= r %></strong><%= (index < s.recipients.size - 2) ? ',' : '' %>
-          <%= (index == s.recipients.size - 2) ? '&' : '' %>
-        <% end %>
-      </p>
-      <div class="cheer well">
-        <p class="lead"><%= highlight(s.message, s.recipients).html_safe %></p>
+  <div class="shoutouts">
+    <hr>
+    <% @shoutouts.each do |s| %>
+      <div class="row">
+        <div class="col-md-1">
+          <p class="lead shoutout-id">#<%= s.id %> <span class="timestamp"><%= time_ago_message(s.created_at) %></span></p>
+            <input type="checkbox" id="<%= s.id %>">
+        </div>
+        <div class="col-md-11">
+          <p>
+            <strong><%= s.sender %></strong> made a shoutout to
+            <% s.recipients.each_with_index do |r, index| %>
+              <strong><%= r %></strong><%= (index < s.recipients.size - 2) ? ',' : '' %>
+              <%= (index == s.recipients.size - 2) ? '&' : '' %>
+            <% end %>
+          </p>
+          <div class="cheer well">
+            <p class="lead"><%= highlight(s.message, s.recipients).html_safe %></p>
+          </div>
+        </div>
       </div>
-    </div>
+      <hr>
+    <% end %>
+    <p class="text-center">
+      <span class="glyphicon glyphicon-option-horizontal"></span>
+    </p>
   </div>
-  <hr>
-<% end %>
+</div>
 
-<input type="text" class="form-control" id="commandBox" value="/cheer ...">
+<footer>
+  <input type="text" class="form-control" id="commandBox" placeholder="/cheer ...">
+</footer>
