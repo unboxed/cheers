@@ -28,7 +28,9 @@ class ApplicationController < ActionController::Base
 
     shoutout = Shoutout.create(
       sender: params[:user_name],
-      recipients: params[:text].scan(/@\w+/).map { |r| r[1..-1] },
+      recipients: params[:text]
+                    .scan(/(@(\w+|\.)+)/)
+                    .map(&:first).map { |r| r[1..-1] },
       message: params[:text].strip
     )
 
@@ -54,7 +56,7 @@ class ApplicationController < ActionController::Base
         return render text: 'Cheeky! There are other ways to rig this election!'
       end
       Cheer.create(sender: params[:user_name], shoutout: shoutout)
-      names << shoutout.sender
+      names << shoutout.recipients
     end
     if names.empty?
       render text: "Woah there, how about making some valid cheers next time?"
