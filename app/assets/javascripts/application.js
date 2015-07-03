@@ -41,6 +41,7 @@ function updateCommand() {
     command = command + "#" + ids[i] + " ";
   }
   $('#commandBox').val(command);
+  $('#mobileCommandBox').text(command);
 }
 
 function updateButtons() {
