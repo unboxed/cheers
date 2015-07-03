@@ -19,12 +19,13 @@ var ids = [];
 
 $(document).ready(function() {
   $(".cheer-button").click(function() {
+    $(this).addClass("btn-success");
     ids.push(this.id);
     updateCommand();
     updateButtons();
   });
 
-  $(".clear-cheers").click(function() {
+  $('#slackCommandModal').on('hidden.bs.modal', function (e) {
     clearCheers();
   });
 
@@ -45,6 +46,7 @@ function updateButtons() {
   if (ids.length === 3) {
     $('button[type=submit]').prop('disabled', true);
     $(".clear-cheers").css("display", "block");
+    $('#slackCommandModal').modal('show')
   } else {
     $('button[type=submit]').prop('disabled', false);
   }
@@ -55,5 +57,6 @@ function clearCheers() {
   updateCommand();
   updateButtons();
   $(".clear-cheers").css("display", "none");
+  $('button[type=submit]').removeClass("btn-success");
 }
 
