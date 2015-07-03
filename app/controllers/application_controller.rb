@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def reveal
     @shoutout = Shoutout.order('created_at DESC').all
       .sort_by { |s| s.cheers.size }
-      .first
+      .last
   end
 
   def shoutout
