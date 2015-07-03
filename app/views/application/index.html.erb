@@ -40,6 +40,9 @@
       <strong><%= @shoutouts.pluck(:recipients).reduce(:+).uniq.size %></strong>
       <span class="glyphicon glyphicon-user"></span>
       this week.
+      <% if (cheer_count = @shoutouts.map(&:cheers).reduce(:+).size) > 0 %>
+        <%= cheer_count %> 🎉
+      <% end %>
     </p>
   <% end %>
 </header>
