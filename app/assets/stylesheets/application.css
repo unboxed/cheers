@@ -131,6 +131,14 @@ footer {
   font-size: 10em;
 }
 
+#confetti{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
 @media only screen and (max-width: 667px) {
   hr {
     margin: 5px 0px;
