@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     @winning_count = @shoutouts.first.cheers.size
   end
 
+  def reveal
+    @shoutout = Shoutout.order('created_at DESC').all
+      .sort_by { |s| s.cheers.size }
+      .first
+  end
+
   def shoutout
     if params[:text].match(/undo|clear/)
       if Shoutout.undo_latest_for_user(params[:user_name])

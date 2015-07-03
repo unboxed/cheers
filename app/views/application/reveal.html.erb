@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="reveal">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>🎉</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p>
+          <strong><%= @shoutout.sender %></strong> made a shoutout to
+          <% @shoutout.recipients.each_with_index do |r, index| %>
+            <strong><%= r %></strong><%= (index < @shoutout.recipients.size - 2) ? ',' : '' %>
+            <%= (index == @shoutout.recipients.size - 2) ? '&' : '' %>
+          <% end %>
+
+          <% unless @shoutout.cheers.empty? %>
+            🎉<%= @shoutout.cheers.size %>
+          <% end %>
+        </p>
+        <div class="cheer well">
+          <p class="lead text-center"><%= highlight(@shoutout.message, @shoutout.recipients).html_safe %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
