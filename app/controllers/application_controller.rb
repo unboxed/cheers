@@ -24,6 +24,8 @@ class ApplicationController < ActionController::Base
 
     if params[:text].include?(params[:user_name])
       return render text: "Share the love, you can't shoutout yourself!"
+    elsif !params[:text].match(/@\w+/)
+      return render text: 'Share the love! You need to mention someone.'
     end
 
     shoutout = Shoutout.create(
