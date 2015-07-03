@@ -73,6 +73,7 @@
         <div class="col-md-1">
           <p class="lead shoutout-id">#<%= s.id %> <span class="timestamp"><%= time_ago_message(s.created_at) %></span></p>
             <button class="cheer-button btn btn-default" type="submit" id="<%= s.id %>">🎉</button>
+            <span class="cheer-button-counter" id="b<%= s.id %>"></span>
         </div>
         <div class="col-md-11">
           <p>

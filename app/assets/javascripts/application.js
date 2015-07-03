@@ -21,6 +21,7 @@ $(document).ready(function() {
   $(".cheer-button").click(function() {
     $(this).addClass("btn-success");
     ids.push(this.id);
+    $('#b' + this.id).text(countOccurrences(this.id));
     updateCommand();
     updateButtons();
   });
@@ -52,11 +53,22 @@ function updateButtons() {
   }
 }
 
+function countOccurrences(num) {
+  var occurences = 0;
+  for(var i = 0; i < ids.length; i++) {
+    if(ids[i] === num) {
+      occurences++;
+    }
+  }
+  return occurences;
+}
+
 function clearCheers() {
   ids = [];
   updateCommand();
   updateButtons();
   $(".clear-cheers").css("display", "none");
   $('button[type=submit]').removeClass("btn-success");
+  $(".cheer-button-counter").text("");
 }
 

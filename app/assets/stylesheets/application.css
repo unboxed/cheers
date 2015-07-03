@@ -78,6 +78,10 @@ hr {
   font-size: 20px
 }
 
+.cheer-button-counter {
+  font-size: 20px;
+}
+
 .clear-cheers {
   display: block;
   width: 100%;
@@ -169,5 +173,11 @@ footer {
     float: right;
     margin-top: -25px;
     padding: 1px 5px;
+  }
+
+  .cheer-button-counter {
+    float: right;
+    margin-top: -25px;
+    margin-right: 5px;
   }
 }
