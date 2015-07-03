@@ -91,6 +91,12 @@ hr {
   left: 10px;
 }
 
+.the-end {
+  margin-top: 20px;
+  font-family: 'Pacifico', display;
+  font-size: 0.9em;
+  color: Grey;
+}
 
 footer {
   position: fixed;
@@ -117,14 +123,18 @@ footer {
   box-shadow: 0px 0px 5px #FFD700;
 }
 
-@media only screen and (max-device-width: 667px) {
+@media only screen and (max-width: 667px) {
+  hr {
+    margin: 5px 0px;
+  }
+
   #commandBox {
     padding: 20px 10px;
     font-size: 20px;
   }
 
   .well {
-    padding: 10px;
+    padding: 5px;
   }
 
   .title {
@@ -132,6 +142,16 @@ footer {
   }
 
   .subtitle {
-    font-size: 1.2em;
+    display: none;
+  }
+
+  .shoutouts {
+    margin-top: 100px;
+  }
+
+  .cheer-button {
+    float: right;
+    margin-top: -25px;
+    padding: 1px 5px;
   }
 }
