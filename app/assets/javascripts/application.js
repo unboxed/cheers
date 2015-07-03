@@ -21,7 +21,7 @@ $(document).ready(function() {
   $(".cheer-button").click(function() {
     $(this).addClass("btn-success");
     ids.push(this.id);
-    $('#b' + this.id).text(countOccurrences(this.id));
+    $('#b' + this.id).text(countOccurrences(this.id).toString());
     updateCommand();
     updateButtons();
   });
@@ -72,4 +72,3 @@ function clearCheers() {
   $('button[type=submit]').removeClass("btn-success");
   $(".cheer-button-counter").text("");
 }
-
