@@ -127,8 +127,10 @@ footer {
   margin-top: 15%;
 }
 
-.reveal h1 {
-  font-size: 10em;
+.reveal .star {
+  color: Gold;
+  font-size: 8em;
+  padding: 0px;
 }
 
 #confetti{
