@@ -8,6 +8,7 @@ class Shoutout < ActiveRecord::Base
     if shoutouts.empty?
       return false
     else
+      shoutouts.first.cheers.delete_all
       shoutouts.first.delete
       return true
     end
