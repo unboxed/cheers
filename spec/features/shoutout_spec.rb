@@ -9,6 +9,11 @@ RSpec.feature "Shouting out to another person" do
     expect(page).to have_content "1m ago"
     expect(response.body).to eq "Shoutout to Bob saved!"
   end
+
+  specify "responds appropriately when attempting to self shoutout" do
+    response = send_shoutout(from: "Jeff", message: "thx @Jeff")
+    expect(response.body).to eq "Share the love, you can't shoutout yourself!"
+  end
 end
 
 RSpec.feature "Undoing previous shoutout" do
