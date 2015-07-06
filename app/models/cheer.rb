@@ -2,7 +2,7 @@ class Cheer < ActiveRecord::Base
   belongs_to :shoutout
 
   def self.latest_for_user(user_name)
-    where('sender = ? AND created_at >= ?', user_name, 1.week.ago)
+    where(sender: user_name, created_at: Date.today.beginning_of_week(:sunday)..Time.zone.now)
       .order('created_at ASC')
   end
 end
