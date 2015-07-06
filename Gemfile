@@ -12,15 +12,18 @@ end
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-
 gem 'jquery-rails'
 
+group :test do
+  gem "capybara"
+  gem "database_cleaner"
+end
+
 group :development, :test do
+  gem "launchy"
+  gem "rspec-rails", "~> 3.2.0"
   gem 'pry'
-
   gem 'sqlite3'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
 
