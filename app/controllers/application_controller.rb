@@ -3,18 +3,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def index
-    @shoutouts = Shoutout.order('created_at DESC').all
+    @shoutouts = Shoutout.since_sunday_morning
   end
 
   def admin
-    @shoutouts = Shoutout.order('created_at DESC').all
+    @shoutouts = Shoutout.since_sunday_morning
       .sort_by { |s| s.cheers.size }
       .reverse
     @winning_count = @shoutouts.first.cheers.size
   end
 
   def reveal
-    @shoutout = Shoutout.order('created_at DESC').all
+    @shoutout = Shoutout.since_sunday_morning
       .sort_by { |s| s.cheers.size }
       .last
   end
