@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'application#index'
   get '/admin' => 'application#admin'
-  get '/reveal' => 'application#reveal'
+  get '/reveal' => 'application#reveal', as: :reveal
 
 
   post '/' => 'application#shoutout'
