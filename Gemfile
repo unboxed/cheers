@@ -23,6 +23,7 @@ end
 group :development, :test do
   gem "launchy"
   gem "rspec-rails", "~> 3.2.0"
+  gem "shoulda-matchers"
   gem 'pry'
   gem 'sqlite3'
   gem 'web-console', '~> 2.0'
