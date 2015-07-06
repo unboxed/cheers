@@ -19,6 +19,11 @@ RSpec.feature "Undoing previous shoutout" do
     expect(page).to_not have_content "thx to @Bob"
     expect(response.body).to eq "Shoutout undone!"
   end
+
+  specify "responds appropriately when no shoutout made" do
+    response = send_shoutout(from: "Jeff", message: "undo")
+    expect(response.body).to eq "How about doing something first?"
+  end
 end
 
 def send_shoutout(from:, message:)
