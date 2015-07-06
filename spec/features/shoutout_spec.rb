@@ -14,6 +14,11 @@ RSpec.feature "Shouting out to another person" do
     response = send_shoutout(from: "Jeff", message: "thx @Jeff")
     expect(response.body).to eq "Share the love, you can't shoutout yourself!"
   end
+
+  specify "responds appropriately when no one is mentioned in message" do
+    response = send_shoutout(from: "Jeff", message: "thx mate")
+    expect(response.body).to eq "Share the love! You need to mention someone."
+  end
 end
 
 RSpec.feature "Undoing previous shoutout" do
