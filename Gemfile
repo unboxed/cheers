@@ -17,6 +17,7 @@ gem 'jquery-rails'
 group :test do
   gem "capybara"
   gem "database_cleaner"
+  gem "factory_girl_rails"
 end
 
 group :development, :test do
