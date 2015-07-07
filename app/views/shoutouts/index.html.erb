@@ -1,5 +1,5 @@
 <button type="button" class="help-button btn btn-success" data-toggle="modal" data-target="#slackHelpModal">
-  Slack ⁉︎
+  Slack
 </button>
 
 <div class="modal fade" id="slackHelpModal" tabindex="-1" role="dialog" aria-labelledby="slackHelpModalLabel">
@@ -50,14 +50,14 @@
   <% unless @shoutouts.empty? %>
     <p class="text-center">
       <strong><%= @shoutouts.size %></strong> shoutouts
-      sent from <strong><%= @shoutouts.pluck(:sender).uniq.size %></strong>
+      sent from <strong><%= unique_senders_count(@shoutouts) %></strong>
       <span class="glyphicon glyphicon-user"></span>
       to
-      <strong><%= @shoutouts.pluck(:recipients).reduce(:+).uniq.size %></strong>
+      <strong><%= unique_recipients_count(@shoutouts) %></strong>
       <span class="glyphicon glyphicon-user"></span>
       this week.
-      <% if (cheer_count = @shoutouts.map(&:cheers).reduce(:+).size) > 0 %>
-        <%= cheer_count %> 🎉
+      <% if (count = cheer_count(@shoutouts)) > 0 %>
+        <%= count %> 🎉
       <% end %>
     </p>
   <% end %>
@@ -79,13 +79,10 @@
         <div class="col-md-11">
           <p>
             <strong><%= s.sender %></strong> made a shoutout to
-            <% s.recipients.each_with_index do |r, index| %>
-              <strong><%= r %></strong><%= (index < s.recipients.size - 2) ? ',' : '' %>
-              <%= (index == s.recipients.size - 2) ? '&' : '' %>
-            <% end %>
+            <%= format_recipients(s.recipients).html_safe %>
           </p>
           <div class="cheer well">
-            <p class="lead"><%= highlight(s.message, s.recipients).html_safe %></p>
+            <p class="lead"><%= highlight_usernames(s.message, s.recipients).html_safe %></p>
           </div>
         </div>
       </div>
