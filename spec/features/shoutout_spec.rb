@@ -31,6 +31,7 @@ RSpec.feature "Undoing previous shoutout" do
   end
 
   specify "responds appropriately when no shoutout made" do
+    Shoutout.delete_all
     response = send_shoutout(from: "Jeff", message: "undo")
     expect(response.body).to eq "How about doing something first?"
   end
