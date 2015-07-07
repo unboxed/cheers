@@ -385,9 +385,12 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
   }
-  var confetti = new confetti.Context('confetti');
-  confetti.start();
-  window.addEventListener('resize', function(event) {
-    confetti.resize();
-  });
+
+  if (document.getElementById('confetti')) {
+    var confetti = new confetti.Context('confetti');
+    confetti.start();
+    window.addEventListener('resize', function(event) {
+      confetti.resize();
+    });
+  }
 });
