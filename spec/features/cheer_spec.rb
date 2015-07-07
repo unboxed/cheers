@@ -18,6 +18,18 @@ RSpec.feature "Cheering for shoutouts" do
     response = send_cheer(from: "Bob", text: "##{shoutout.id}")
     expect(response.body).to eq "Cheeky! There are other ways to rig this election!"
   end
+
+  specify "cheers are update correctly" do
+    Cheer.delete_all
+    shoutout1 = create(:shoutout, recipients: %w(Jim))
+    shoutout2 = create(:shoutout, recipients: %w(Jeff))
+
+    send_cheer(from: "Bob", text: "##{shoutout1.id} " * 3)
+    send_cheer(from: "Bob", text: "##{shoutout2.id} " * 3)
+    send_cheer(from: "Bob", text: "##{shoutout1.id}")
+    send_cheer(from: "Bob", text: "##{shoutout2.id} " * 2)
+    expect(Cheer.count).to be 3
+  end
 end
 
 RSpec.feature "Undoing and clearing cheers" do
