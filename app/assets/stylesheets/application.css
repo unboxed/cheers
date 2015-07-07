@@ -39,6 +39,12 @@ hr {
   margin: 15px 0px;
 }
 
+.flash {
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+}
+
 .title {
   font-family: 'Pacifico', display;
   font-size: 4em;
