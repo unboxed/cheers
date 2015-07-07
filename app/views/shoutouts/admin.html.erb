@@ -8,11 +8,7 @@
       <div class="col-md-11">
         <p>
           <strong><%= s.sender %></strong> made a shoutout to
-          <% s.recipients.each_with_index do |r, index| %>
-            <strong><%= r %></strong><%= (index < s.recipients.size - 2) ? ',' : '' %>
-            <%= (index == s.recipients.size - 2) ? '&' : '' %>
-          <% end %>
-
+          <%= format_recipients(s.recipients).html_safe %>
           <% unless s.cheers.empty? %>
             🎉<%= s.cheers.size %>
           <% end %>
