@@ -17,6 +17,7 @@ class ShoutoutsController < ApplicationController
     @shoutout = Shoutout.since_sunday_morning
       .sort_by { |s| s.cheers.size }
       .last
+    return redirect_to root_path, flash: { error: 'No Shoutouts '} unless @shoutout
   end
 
   def create
