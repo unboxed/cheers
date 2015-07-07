@@ -10,7 +10,7 @@ class ShoutoutsController < ApplicationController
     @shoutouts = Shoutout.since_sunday_morning
       .sort_by { |s| s.cheers.size }
       .reverse
-    @winning_count = @shoutouts.first.cheers.size
+    @winning_count = @shoutouts.first.cheers.size unless @shoutouts.empty?
   end
 
   def reveal

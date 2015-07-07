@@ -36,6 +36,14 @@ RSpec.feature "Undoing previous shoutout" do
   end
 end
 
+RSpec.feature "Revealing winning shoutout" do
+  specify "redirection when no shoutouts" do
+    Shoutout.delete_all
+    response = get reveal_path
+    expect(response.status).to be 302
+  end
+end
+
 def send_shoutout(from:, message:)
   post shoutout_path, user_name: from, text: message
 end
