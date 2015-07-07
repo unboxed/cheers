@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/reveal' => 'shoutouts#reveal'
   post '/shoutout' => 'shoutouts#create'
 
-  post '/cheer' => 'application#cheer'
+  post '/cheer' => 'cheers#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
