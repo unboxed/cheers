@@ -37,5 +37,5 @@ RSpec.feature "Undoing previous shoutout" do
 end
 
 def send_shoutout(from:, message:)
-  post "/", user_name: from, text: message
+  post shoutout_path, user_name: from, text: message
 end

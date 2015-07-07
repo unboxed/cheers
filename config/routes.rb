@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root 'application#index'
-  get '/admin' => 'application#admin'
-  get '/reveal' => 'application#reveal'
+  root 'shoutouts#index'
 
+  get '/admin' => 'shoutouts#admin'
+  get '/reveal' => 'shoutouts#reveal'
+  post '/shoutout' => 'shoutouts#create'
 
-  post '/' => 'application#shoutout'
   post '/cheer' => 'application#cheer'
 
   # Example of regular route:
