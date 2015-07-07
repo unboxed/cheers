@@ -14,7 +14,7 @@
           <% end %>
 
           <% unless s.cheers.empty? %>
-            🎉<%= s.cheers.size %>
+            <%= image_tag('cheer.png', class: 'inline-cheer-icon') %><%= s.cheers.size %>
           <% end %>
         </p>
         <div class="cheer well">
