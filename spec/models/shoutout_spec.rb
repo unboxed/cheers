@@ -6,6 +6,7 @@ RSpec.describe Shoutout, type: :model do
 
   describe "since_sunday_morning query" do
     it 'should only return shoutouts from this week' do
+      Shoutout.delete_all
       create(:shoutout, created_at: 10.days.ago)
       create(:shoutout)
       expect(Shoutout.since_sunday_morning.size).to be 1
@@ -14,6 +15,7 @@ RSpec.describe Shoutout, type: :model do
 
   describe "shoutout undo" do
     it 'should remove the latest shoutout for the given user' do
+      Shoutout.delete_all
       name = create(:shoutout).sender
       result = Shoutout.undo_latest_for_user(name)
       expect(Shoutout.where(sender: name).count).to be 0
