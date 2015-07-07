@@ -20,7 +20,6 @@ RSpec.feature "Cheering for shoutouts" do
   end
 
   specify "cheers are update correctly" do
-    Cheer.delete_all
     shoutout1 = create(:shoutout, recipients: %w(Jim))
     shoutout2 = create(:shoutout, recipients: %w(Jeff))
 

@@ -38,7 +38,6 @@ end
 
 RSpec.feature "Revealing winning shoutout" do
   specify "redirection when no shoutouts" do
-    Shoutout.delete_all
     response = get reveal_path
     expect(response.status).to be 302
   end
