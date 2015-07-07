@@ -1,4 +1,5 @@
 class ShoutoutsController < ApplicationController
+  # TODO pull credentials out into environment variables
   http_basic_authenticate_with name: 'cheerybot', password: 'share the love', only: :admin
 
   def index
