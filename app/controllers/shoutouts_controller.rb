@@ -43,6 +43,6 @@ class ShoutoutsController < ApplicationController
       message: params[:text].strip
     )
 
-    render text: "Shoutout to #{shoutout.recipients.join(' & ')} saved!"
+    render text: "Shoutout to #{shoutout.recipients.join(' & ')} saved! Visit #{root_url} to see your shoutout and more."
   end
 end
