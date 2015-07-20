@@ -7,6 +7,19 @@ module ShoutoutsHelper
     end
   end
 
+  def highlight_locations(message, locations)
+    message.tap do |message|
+      locations.each do |location|
+        message.gsub!("##{location}", "<a href=\"#\">##{location}</a>")
+      end
+    end
+  end
+
+  def highlight(message, names, locations)
+    highlight_usernames(message, names)
+    highlight_locations(message, locations)
+  end
+
   def time_ago_message(time)
     distance_of_time_in_words(time, Time.zone.now)
       .gsub('about', '')
@@ -26,6 +39,7 @@ module ShoutoutsHelper
     end
     return list
   end
+
 
   def unique_senders_count(shoutouts)
     shoutouts.map(&:sender).uniq.size

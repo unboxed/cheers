@@ -82,7 +82,7 @@
             <%= format_recipients(s.recipients).html_safe %>
           </p>
           <div class="cheer well">
-            <p class="lead"><%= highlight_usernames(s.message, s.recipients).html_safe %></p>
+            <p class="lead"><%= highlight(s.message, s.recipients, s.locations).html_safe %></p>
           </div>
         </div>
       </div>

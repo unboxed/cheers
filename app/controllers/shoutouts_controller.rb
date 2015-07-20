@@ -40,8 +40,14 @@ class ShoutoutsController < ApplicationController
       recipients: params[:text]
                     .scan(/(@(\w+|\.)+)/)
                     .map(&:first).map { |r| r[1..-1] },
-      message: params[:text].strip
+      message: params[:text].strip,
+      locations: params[:text]
+                    .scan(/(#(\w+)+)/)
+                    .map(&:first).map { |r| r[1..-1] }
     )
+
+    puts shoutout[:locations]
+    puts shoutout[:recipients]
 
     render text: "Shoutout to #{shoutout.recipients.join(' & ')} saved! Visit #{root_url} to see your shoutout and more."
   end
