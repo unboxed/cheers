@@ -115,6 +115,10 @@ hr {
   color: Grey;
 }
 
+.form-control {
+  height: auto;
+}
+
 footer {
   position: fixed;
   bottom: 0px;
