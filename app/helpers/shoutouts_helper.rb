@@ -10,7 +10,7 @@ module ShoutoutsHelper
   def highlight_locations(message, locations)
     message.tap do |message|
       locations.each do |location|
-        message.gsub!("##{location}", "<a href=\"#\">##{location}</a>")
+        message.gsub!("##{location}", "<a href=\"#{location}\">##{location}</a>")
       end
     end
   end

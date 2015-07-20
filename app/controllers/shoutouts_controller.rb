@@ -20,6 +20,10 @@ class ShoutoutsController < ApplicationController
     return redirect_to root_path, flash: { error: 'No Shoutouts '} unless @shoutout
   end
 
+  def location
+    @location = params[:location]
+  end
+
   def create
     if params[:text].match(/undo|clear/)
       if Shoutout.undo_latest_for_user(params[:user_name])

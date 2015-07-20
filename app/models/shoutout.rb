@@ -8,6 +8,9 @@ class Shoutout < ActiveRecord::Base
       .order('created_at DESC')
   end
 
+  def self.query_location(location)
+  end
+
   def self.undo_latest_for_user(user_name)
     shoutouts = where(sender: user_name)
       .order('created_at DESC')
