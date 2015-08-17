@@ -79,9 +79,16 @@ hr {
 }
 
 .cheer-button {
-  padding-right: 5px;
-  padding-bottom: 5px;
+  background: url('/images/cheer.png');
+  background-size: 100% 100%;
+  width: 35px;
+  height: 35px;
   font-size: 20px
+}
+
+.inline-cheer-icon {
+  margin-top: -5px;
+  max-height: 1.5em;
 }
 
 .cheer-button-counter {
