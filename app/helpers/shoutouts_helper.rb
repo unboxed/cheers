@@ -7,17 +7,17 @@ module ShoutoutsHelper
     end
   end
 
-  def highlight_locations(message, locations)
+  def highlight_tags(message, tags)
     message.tap do |message|
-      locations.each do |location|
-        message.gsub!("##{location}", "<a href=\"#{location}\">##{location}</a>")
+      tags.each do |tag|
+        message.gsub!("##{tag}", "<a href=\"/tag/#{tag}\">##{tag}</a>")
       end
     end
   end
 
-  def highlight(message, names, locations)
+  def highlight(message, names, tags)
     highlight_usernames(message, names)
-    highlight_locations(message, locations)
+    highlight_tags(message, tags)
   end
 
   def time_ago_message(time)

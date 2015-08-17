@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'shoutouts#index'
 
   get '/admin' => 'shoutouts#admin'
-  get '/:location' => 'shoutouts#location'
+  get '/tag/:tag' => 'shoutouts#tag'
   get '/reveal' => 'shoutouts#reveal'
   post '/shoutout' => 'shoutouts#create'
 

@@ -20,8 +20,8 @@ class ShoutoutsController < ApplicationController
     return redirect_to root_path, flash: { error: 'No Shoutouts '} unless @shoutout
   end
 
-  def location
-    @location = params[:location]
+  def tag
+    @tag = params[:tag]
   end
 
   def create
@@ -45,12 +45,12 @@ class ShoutoutsController < ApplicationController
                     .scan(/(@(\w+|\.)+)/)
                     .map(&:first).map { |r| r[1..-1] },
       message: params[:text].strip,
-      locations: params[:text]
+      tags: params[:text]
                     .scan(/(#(\w+)+)/)
                     .map(&:first).map { |r| r[1..-1] }
     )
 
-    puts shoutout[:locations]
+    puts shoutout[:tags]
     puts shoutout[:recipients]
 
     render text: "Shoutout to #{shoutout.recipients.join(' & ')} saved! Visit #{root_url} to see your shoutout and more."
