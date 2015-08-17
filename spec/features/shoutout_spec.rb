@@ -60,5 +60,6 @@ RSpec.feature "Revealing winning shoutout" do
 end
 
 def send_shoutout(from:, message:)
+  create(:user, name: from)
   post shoutout_path, user_name: from, text: message
 end
