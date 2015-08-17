@@ -10,7 +10,7 @@ RSpec.feature "Cheering for shoutouts" do
 
   specify "responds appropriately to invalid cheer command input" do
     response = send_cheer(from: "Jeff", text: "voting")
-    expect(response.body).to eq "Woah there, how about making some valid cheers next time?"
+    expect(response.body).to eq "Woah there, how about making some valid cheers next time? See http://example.org/ for help."
   end
 
   specify "responds appropriately to self cheering" do
