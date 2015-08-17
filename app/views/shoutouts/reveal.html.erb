@@ -17,7 +17,9 @@
           <% end %>
         </p>
         <div class="cheer well">
-          <p class="lead text-center reveal-message"><%= highlight_usernames(@shoutout.message, @shoutout.recipients).html_safe %></p>
+          <p class="lead text-center reveal-message">
+            <%= highlight(@shoutout.message, @shoutout.recipients, @shoutout.tags).html_safe %>
+          </p>
         </div>
       </div>
     </div>
