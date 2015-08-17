@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817103623) do
+ActiveRecord::Schema.define(version: 20150817151214) do
 
   create_table "cheers", force: :cascade do |t|
     t.integer  "shoutout_id"
@@ -50,5 +50,12 @@ ActiveRecord::Schema.define(version: 20150817103623) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

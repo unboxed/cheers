@@ -4,13 +4,15 @@ Rails.application.routes.draw do
 
   root 'shoutouts#index'
 
+  post '/shoutout' => 'shoutouts#create'
+  post '/cheer' => 'cheers#create'
+
+  get '/users/location_missing' => 'users#location_missing'
+  post '/users/set_location' => 'users#set_location'
+
   get '/admin' => 'shoutouts#admin'
   get '/tag/:tag' => 'shoutouts#tag'
   get '/reveal' => 'shoutouts#reveal'
-  post '/shoutout' => 'shoutouts#create'
-
-  post '/cheer' => 'cheers#create'
-
   get 'help' => 'static#help'
 
   # Example of regular route:
