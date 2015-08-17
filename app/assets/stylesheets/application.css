@@ -141,13 +141,27 @@ footer {
 }
 
 .reveal {
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
 .reveal .star {
   color: Gold;
   font-size: 8em;
   padding: 0px;
+}
+
+.reveal-meta {
+  margin: 30px 0px;
+  text-align: center;
+  font-size: 2em;
+}
+
+.reveal-message {
+  font-size: 4em;
+}
+
+.reveal-message mark {
+  border-radius: 10px;
 }
 
 #confetti{
