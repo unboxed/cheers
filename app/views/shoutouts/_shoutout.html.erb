@@ -1,0 +1,20 @@
+<div class="row <%= winner ? 'top' : '' %>">
+  <div class="col-md-1">
+    <p class="lead shoutout-id">#<%= shoutout.id %> <span class="timestamp"><%= time_ago_message(shoutout.created_at) %></span></p>
+      <button class="cheer-button btn btn-default" type="submit" id="<%= shoutout.id %>">🎉</button>
+      <span class="cheer-button-counter" id="b<%= shoutout.id %>"></span>
+  </div>
+  <div class="col-md-11">
+    <p>
+      <strong><%= shoutout.sender %></strong> made a shoutout to
+      <%= format_recipients(shoutout.recipients).html_safe %>
+      <% unless hide_votes %>
+        🎉<%= shoutout.cheers.size %>
+      <% end %>
+    </p>
+    <div class="cheer well">
+      <p class="lead"><%= highlight(shoutout.message, shoutout.recipients, shoutout.tags).html_safe %></p>
+    </div>
+  </div>
+</div>
+<hr>

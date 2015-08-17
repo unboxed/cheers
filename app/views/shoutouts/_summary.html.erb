@@ -1,0 +1,14 @@
+<% unless @shoutouts.empty? %>
+  <p class="text-center">
+    <strong><%= @shoutouts.size %></strong> shoutouts
+    sent from <strong><%= unique_senders_count(@shoutouts) %></strong>
+    <span class="glyphicon glyphicon-user"></span>
+    to
+    <strong><%= unique_recipients_count(@shoutouts) %></strong>
+    <span class="glyphicon glyphicon-user"></span>
+    this week.
+    <% if (count = cheer_count(@shoutouts)) > 0 %>
+      <%= count %> 🎉
+    <% end %>
+  </p>
+<% end %>

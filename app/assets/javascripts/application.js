@@ -35,7 +35,7 @@ $(document).ready(function() {
 });
 
 function updateCommand() {
-  var command = "/cheer ";
+  var command = "/vote ";
   for (var i in ids) {
     command = command + "#" + ids[i] + " ";
   }

@@ -1,23 +1,6 @@
 <div class="container">
   <h1>Admin</h1>
   <% @shoutouts.each do |s| %>
-    <div class="row <%= (s.cheers.size == @winning_count) ? 'top' : '' %>">
-      <div class="col-md-1">
-        <p class="lead shoutout-id">#<%= s.id %> <span class="timestamp"><%= time_ago_message(s.created_at) %></span></p>
-      </div>
-      <div class="col-md-11">
-        <p>
-          <strong><%= s.sender %></strong> made a shoutout to
-          <%= format_recipients(s.recipients).html_safe %>
-          <% unless s.cheers.empty? %>
-            🎉<%= s.cheers.size %>
-          <% end %>
-        </p>
-        <div class="cheer well">
-          <p class="lead"><%= highlight_usernames(s.message, s.recipients).html_safe %></p>
-        </div>
-      </div>
-    </div>
-    <hr>
+    <%= render 'shoutout', shoutout: s, winner: s.cheers.size == @winning_count, hide_votes: false %>
   <% end %>
 </div>

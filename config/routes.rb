@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   post '/cheer' => 'cheers#create'
 
+  get 'help' => 'static#help'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
