@@ -8,7 +8,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <p>
+        <p class="reveal-meta">
           <strong><%= @shoutout.sender %></strong> made a shoutout to
           <%= format_recipients(@shoutout.recipients).html_safe %>
 
@@ -17,7 +17,7 @@
           <% end %>
         </p>
         <div class="cheer well">
-          <p class="lead text-center"><%= highlight_usernames(@shoutout.message, @shoutout.recipients).html_safe %></p>
+          <p class="lead text-center reveal-message"><%= highlight_usernames(@shoutout.message, @shoutout.recipients).html_safe %></p>
         </div>
       </div>
     </div>
