@@ -1,1 +1,54 @@
-<h1><%= @tag %></h1>
+<div class="modal fade" id="slackCommandModal" tabindex="-1" role="dialog" aria-labelledby="slackCommandModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="slackCommandModalLabel">Cheer Command</h4>
+      </div>
+      <div class="modal-body">
+        <p>Copy and paste the below command into Slack</p>
+        <input readonly type="text" class="form-control" id="commandBox" placeholder="/cheer ...">
+        <div id="mobileCommandBox"></div>
+        <button type="button" class="clear-cheers btn btn-danger" data-dismiss="modal">Dismiss and Start Over</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <h1 class="title text-center">Three Cheers</h1>
+  <p class="subtitle text-center">hip hip hooray!</p>
+  <h1 class="tag-title text-center">#<%= @tag %></h1>
+</header>
+
+<div class="container">
+  <div class="tag-shoutouts">
+    <hr>
+    <% if @shoutouts.empty? %>
+      <p class="text-center">All is quiet</p>
+    <% end %>
+    <% @shoutouts.each do |s| %>
+      <div class="row">
+        <div class="col-md-1">
+          <p class="lead shoutout-id">#<%= s.id %> <span class="timestamp"><%= time_ago_message(s.created_at) %></span></p>
+            <button class="cheer-button btn btn-default" type="submit" id="<%= s.id %>">🎉</button>
+            <span class="cheer-button-counter" id="b<%= s.id %>"></span>
+        </div>
+        <div class="col-md-11">
+          <p>
+            <strong><%= s.sender %></strong> made a shoutout to
+            <%= format_recipients(s.recipients).html_safe %>
+          </p>
+          <div class="cheer well">
+            <p class="lead"><%= highlight(s.message, s.recipients, s.tags).html_safe %></p>
+          </div>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+    <p class="the-end text-center">
+      the end...&nbsp;&nbsp;&nbsp;
+      <a href="https://trello.com/b/lTJyK69o/cheers">Feedback</a>
+    </p>
+  </div>
+</div>

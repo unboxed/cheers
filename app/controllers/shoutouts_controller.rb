@@ -22,6 +22,7 @@ class ShoutoutsController < ApplicationController
 
   def tag
     @tag = params[:tag]
+    @shoutouts = Shoutout.tagged_with(@tag)
   end
 
   def create
@@ -45,14 +46,14 @@ class ShoutoutsController < ApplicationController
                     .scan(/(@(\w+|\.)+)/)
                     .map(&:first).map { |r| r[1..-1] },
       message: params[:text].strip,
-      tags: params[:text]
+      tag_list: params[:text]
                     .scan(/(#(\w+)+)/)
-                    .map(&:first).map { |r| r[1..-1] }
+                    .map(&:first).map { |t| t[1..-1] }.join(', ')
     )
 
     puts shoutout[:tags]
     puts shoutout[:recipients]
 
-    render text: "Shoutout to #{shoutout.recipients.join(' & ')} saved! Visit #{root_url} to see your shoutout and more."
+    render text: "Shoutout to #{shoutout.recipients.join(' & ')} saved! Visit #{root_url} to see your shoutout."
   end
 end

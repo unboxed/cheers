@@ -7,7 +7,7 @@ RSpec.feature "Shouting out to another person" do
     expect(page).to have_content "thanks @Bob for all the fish"
     expect(page).to have_content "Jeff made a shoutout to Bob"
     expect(page).to have_content "1m ago"
-    expect(response.body).to eq "Shoutout to Bob saved!"
+    expect(response.body).to eq "Shoutout to Bob saved! Visit http://example.org/ to see your shoutout."
   end
 
   specify "responds appropriately when attempting to self shoutout" do
@@ -18,6 +18,22 @@ RSpec.feature "Shouting out to another person" do
   specify "responds appropriately when no one is mentioned in message" do
     response = send_shoutout(from: "Jeff", message: "thx mate")
     expect(response.body).to eq "Share the love! You need to mention someone."
+  end
+end
+
+RSpec.feature "Shouting out with tags" do
+  specify "displays the shoutout message and hashtag link" do
+    response = send_shoutout(from: "Jeff", message: "thanks @Chaz #london")
+    visit root_path
+    expect(page).to have_content "thanks @Chaz #london"
+    expect(page).to have_selector(:link_or_button, '#london')
+  end
+
+  specify "displays the shoutout message on specific tag page" do
+    response = send_shoutout(from: "Jeff", message: "thanks @Chaz #london")
+    visit('/tag/london')
+    expect(page).to have_content "thanks @Chaz #london"
+    expect(page).to have_selector(:link_or_button, '#london')
   end
 end
 
