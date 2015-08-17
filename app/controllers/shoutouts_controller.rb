@@ -14,10 +14,8 @@ class ShoutoutsController < ApplicationController
   end
 
   def reveal
-    @shoutout = Shoutout.since_sunday_morning
-      .sort_by { |s| s.cheers.size }
-      .last
-    return redirect_to root_path, flash: { error: 'No Shoutouts '} unless @shoutout
+    @shoutouts = Shoutout.winners_since_sunday_morning
+    return redirect_to root_path, flash: { error: 'No Shoutouts '} if @shoutouts.empty?
   end
 
   def tag

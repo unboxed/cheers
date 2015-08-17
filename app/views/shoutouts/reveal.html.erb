@@ -6,22 +6,24 @@
         <h1 class="title">Shoutout of the Week!</h1>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <p class="reveal-meta">
-          <strong><%= @shoutout.sender %></strong> made a shoutout to
-          <%= format_recipients(@shoutout.recipients).html_safe %>
+    <% @shoutouts.each do |s| %>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="reveal-meta">
+            <strong><%= s.sender %></strong> made a shoutout to
+            <%= format_recipients(s.recipients).html_safe %>
 
-          <% unless @shoutout.cheers.empty? %>
-            🎉<%= @shoutout.cheers.size %>
-          <% end %>
-        </p>
-        <div class="cheer well">
-          <p class="lead text-center reveal-message">
-            <%= highlight(@shoutout.message, @shoutout.recipients, @shoutout.tags).html_safe %>
+            <% unless s.cheers.empty? %>
+              🎉<%= s.cheers.size %>
+            <% end %>
           </p>
+          <div class="cheer well">
+            <p class="lead text-center reveal-message">
+              <%= highlight(s.message, s.recipients, s.tags).html_safe %>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

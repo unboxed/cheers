@@ -8,6 +8,15 @@ class Shoutout < ActiveRecord::Base
       .order('created_at DESC')
   end
 
+  def self.winners_since_sunday_morning
+    since_sunday_morning
+      .group_by { |s| s.cheers.size }
+      .sort_by { |k, v| -k }
+      .first(3)
+      .map(&:last)
+      .flatten
+  end
+
   def self.undo_latest_for_user(user_name)
     shoutouts = where(sender: user_name)
       .order('created_at DESC')
