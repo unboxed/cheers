@@ -14,7 +14,7 @@ class CheersController < ApplicationController
     params[:text].scan(/#[0-9]+/).take(3).each do |id|
       next unless (shoutout = Shoutout.find_by_id(id[1..-1]))
       if shoutout.recipients.include?(params[:user_name])
-        return render text: 'Cheeky! There are other ways to rig this election!'
+        return render text: 'Cheeky! There are other ways to rig this election! #{root_url}help'
       end
 
       latest[0..-3].map(&:delete)
@@ -24,7 +24,7 @@ class CheersController < ApplicationController
       names << shoutout.recipients
     end
     if names.empty?
-      render text: "Woah there, how about making some valid cheers next time? See #{root_url} for help."
+      render text: "Woah there, how about making some valid cheers next time? See #{root_url}help"
     else
       render text: "Hip Hip! You cheered for #{names.uniq.join(' & ')}!"
     end
