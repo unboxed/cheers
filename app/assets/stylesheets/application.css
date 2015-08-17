@@ -50,13 +50,22 @@ hr {
   font-size: 4em;
 }
 
+.tag-title {
+  padding: 0px 20px;
+}
+
 .subtitle {
   font-family: 'Pacifico', display;
   font-size: 2em;
 }
 
 .shoutouts {
-  margin-top: 165px;
+  margin-top: 180px;
+  margin-bottom: 150px;
+}
+
+.tag-shoutouts {
+  margin-top: 210px;
   margin-bottom: 150px;
 }
 
@@ -113,6 +122,10 @@ hr {
   font-family: 'Pacifico', display;
   font-size: 0.9em;
   color: Grey;
+}
+
+.form-control {
+  height: auto;
 }
 
 footer {

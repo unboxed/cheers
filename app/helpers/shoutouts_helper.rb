@@ -7,6 +7,19 @@ module ShoutoutsHelper
     end
   end
 
+  def highlight_tags(message, tags)
+    message.tap do |message|
+      tags.each do |tag|
+        message.gsub!("##{tag}", "<a href=\"/tag/#{tag}\">##{tag}</a>")
+      end
+    end
+  end
+
+  def highlight(message, names, tags)
+    highlight_usernames(message, names)
+    highlight_tags(message, tags)
+  end
+
   def time_ago_message(time)
     distance_of_time_in_words(time, Time.zone.now)
       .gsub('about', '')
@@ -26,6 +39,7 @@ module ShoutoutsHelper
     end
     return list
   end
+
 
   def unique_senders_count(shoutouts)
     shoutouts.map(&:sender).uniq.size

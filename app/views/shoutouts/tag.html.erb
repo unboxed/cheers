@@ -1,32 +1,3 @@
-<button type="button" class="help-button btn btn-success" data-toggle="modal" data-target="#slackHelpModal">
-  Help &amp; How To
-</button>
-
-<div class="modal fade" id="slackHelpModal" tabindex="-1" role="dialog" aria-labelledby="slackHelpModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="slackHelpModalLabel">Help &amp; How To</h4>
-      </div>
-      <div class="modal-body">
-        <p>During the week shoutout to people who helped you out.</p>
-        <pre><strong>/shoutout</strong> <em>@person</em> saved me a ton of time with all the things. Thanks!</pre>
-
-        <p>Made a mistake? Change the course of history with:</p>
-        <pre><strong>/shoutout</strong> undo</pre>
-
-        <p>At the end of the week take a look at all the shoutouts on this page and cheer on 3 favorites. Click the buttons on this page to build the <code>/cheer</code> command. It should to look something like this:</p>
-        <pre><strong>/cheer</strong> #1 #2 #3</pre>
-
-        <p>Made another mistake? You can <code>undo</code> the latest cheer and <code>clear</code> all cheers like this:</p>
-        <pre><strong>/cheer</strong> undo</pre>
-        <pre><strong>/cheer</strong> clear</pre>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="modal fade" id="slackCommandModal" tabindex="-1" role="dialog" aria-labelledby="slackCommandModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -47,24 +18,11 @@
 <header>
   <h1 class="title text-center">Three Cheers</h1>
   <p class="subtitle text-center">hip hip hooray!</p>
-  <% unless @shoutouts.empty? %>
-    <p class="text-center">
-      <strong><%= @shoutouts.size %></strong> shoutouts
-      sent from <strong><%= unique_senders_count(@shoutouts) %></strong>
-      <span class="glyphicon glyphicon-user"></span>
-      to
-      <strong><%= unique_recipients_count(@shoutouts) %></strong>
-      <span class="glyphicon glyphicon-user"></span>
-      this week.
-      <% if (count = cheer_count(@shoutouts)) > 0 %>
-        <%= count %> 🎉
-      <% end %>
-    </p>
-  <% end %>
+  <h1 class="tag-title text-center">#<%= @tag %></h1>
 </header>
 
 <div class="container">
-  <div class="shoutouts">
+  <div class="tag-shoutouts">
     <hr>
     <% if @shoutouts.empty? %>
       <p class="text-center">All is quiet</p>

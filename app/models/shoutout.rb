@@ -1,6 +1,7 @@
 class Shoutout < ActiveRecord::Base
   has_many :cheers
   serialize :recipients
+  acts_as_taggable
 
   def self.since_sunday_morning
     where(created_at: Date.today.beginning_of_week(:sunday)..Time.zone.now)

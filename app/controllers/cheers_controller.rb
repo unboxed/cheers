@@ -24,7 +24,7 @@ class CheersController < ApplicationController
       names << shoutout.recipients
     end
     if names.empty?
-      render text: "Woah there, how about making some valid cheers next time?"
+      render text: "Woah there, how about making some valid cheers next time? See #{root_url} for help."
     else
       render text: "Hip Hip! You cheered for #{names.uniq.join(' & ')}!"
     end
