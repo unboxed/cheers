@@ -24,6 +24,10 @@ class ShoutoutsController < ApplicationController
   end
 
   def create
+    unless (user = User.find_or_create_by_name(params[:user_name])).location
+      redirect_to users_location_missing_path(text: params[:text]) and return
+    end
+
     if params[:text].match(/undo|clear/)
       if Shoutout.undo_latest_for_user(params[:user_name])
         return render text: 'Shoutout undone!'
