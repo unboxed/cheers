@@ -16,6 +16,8 @@ class UsersController < ApplicationController
 
     if (others = User.where(location: location).size - 1) == 0
       render text: "You're the first person in #{location}!"
+    elsif others == 1
+      render text: "You joined another in #{location}!"
     else
       render text: "You joined #{others} others in #{location}!"
     end

@@ -26,10 +26,16 @@ RSpec.feature 'User can update location' do
     expect(response.body).to include('But you\'re already in')
   end
 
+  specify 'users are told if another user is at their location' do
+    create(:user)
+    response = post '/users/set_location', user_name: 'new_user', text: 'london'
+    expect(response.body).to include('another')
+  end
+
   specify 'users are told count of others at their location' do
     3.times { create(:user) }
     response = post '/users/set_location', user_name: 'new_user', text: 'london'
-    expect(response.body).to include("3 others")
+    expect(response.body).to include('3 others')
   end
 end
 
