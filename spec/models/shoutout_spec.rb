@@ -33,4 +33,19 @@ RSpec.describe Shoutout, type: :model do
       expect(Cheer.where(shoutout: shoutout).count).to be 0
     end
   end
+
+  describe "winning_people_and_shoutouts" do
+    it 'should return the winners with shoutouts by cheer count' do
+      shoutout1 = create(:shoutout, recipients: ['winningest'])
+      shoutout2 = create(:shoutout, recipients: ['winner'])
+      create(:shoutout, recipients: ['completelooser'])
+
+      create(:cheer, shoutout: shoutout1)
+      create(:cheer, shoutout: shoutout2)
+
+      winners = Shoutout.winning_people_and_shoutouts
+      expect(winners.map { |w| w[:name] }).to include('winningest','winner')
+      expect(winners.map { |w| w[:shoutouts] }.flatten).to include(shoutout1, shoutout2)
+    end
+  end
 end

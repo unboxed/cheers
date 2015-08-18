@@ -32,3 +32,13 @@ RSpec.feature "Reveals most cheered shoutouts for tag" do
     expect(page).to have_content "thx to @Tom #capetown"
   end
 end
+
+RSpec.feature "Reveals most voted for users" do
+  specify "correctly displays most voted for users" do
+    shoutout1 = create(:shoutout, recipients: ["Bob"])
+    create(:shoutout, recipients: ["Tom"])
+    create(:cheer, shoutout: shoutout1)
+    visit '/reveal'
+    expect(page).to have_content "Winning People Bob"
+  end
+end
