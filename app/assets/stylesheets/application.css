@@ -17,6 +17,10 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
 
+body {
+  margin-top: 0px;
+}
+
 header {
   position: fixed;
   width: 100%;
@@ -39,6 +43,20 @@ hr {
   margin: 15px 0px;
 }
 
+.container {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.footer {
+  position: fixed;
+  background-color: #F8F8F8;
+  bottom: 0px;
+  width: 100%;
+  padding: 10px;
+  border-top: 1px solid #E7E7E7;
+}
+
 .flash {
   background-color: orange;
   color: white;
@@ -47,27 +65,16 @@ hr {
 
 .title {
   font-family: 'Pacifico', display;
-  text-align: center;
-  font-size: 4em;
 }
 
 .tag-title {
   padding: 0px 20px;
+  font-family: monospace;
 }
 
 .subtitle {
   font-family: 'Pacifico', display;
   font-size: 2em;
-}
-
-.shoutouts {
-  margin-top: 180px;
-  margin-bottom: 225px;
-}
-
-.tag-shoutouts {
-  margin-top: 210px;
-  margin-bottom: 150px;
 }
 
 .shoutout-id {
@@ -105,14 +112,6 @@ hr {
     display:none;
 }
 
-.clear-cheers {
-  display: block;
-  width: 45%;
-  margin: auto;
-  margin-top: 10px;
-  font-size: 20px;
-}
-
 .help-button {
   position: fixed;
   z-index: 200;
@@ -135,31 +134,10 @@ hr {
   max-height: 30px;
 }
 
-footer {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-}
-
-.commandInfo {
-  font-size: 20px;
-  text-align: center;
-}
-
 .commandContainer {
   padding: 20px;
   background-color: white;
   box-shadow: 0px 0px 50px 20px white;
-}
-
-#commandBox {
-  width: 45%;
-  margin: 10px auto;
-  display: block;
-  padding: 15px 10px;
-  font-size: 30px;
-  text-align: center;
-  font-family: monospace;
 }
 
 .top {
@@ -198,8 +176,11 @@ footer {
 }
 
 .arrow {
+  width: 100%;
   text-align: center;
   font-size: 100px;
+  position: fixed;
+  bottom: 70px;
 }
 
 #confetti{
@@ -242,10 +223,6 @@ footer {
 
   .subtitle {
     display: none;
-  }
-
-  .shoutouts {
-    margin-top: 100px;
   }
 
   .cheer-button {

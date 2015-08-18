@@ -40,6 +40,7 @@ function updateCommand() {
   for (var i in ids) {
     command = command + "#" + ids[i] + " ";
   }
+  command = command.trim();
   $('#commandBox').val(command);
   $('#mobileCommandBox').text(command);
 }
@@ -51,6 +52,8 @@ function updateButtons() {
     $('button.btn-success[type=submit]').prop('disabled', true);
     $('#slackCommandModal').modal('show')
     $("#hand").fadeIn();
+    $("#slack-help-text").fadeIn();
+    $('#commandBox').focus().select();
   } else {
     $('button[type=button]').prop('disabled', false);
   }
@@ -74,7 +77,8 @@ function clearCheers() {
   $('button[type=submit]').removeClass("btn-success")
                           .animate({opacity:1})
                           .prop('disabled', false);
-  $(".cheer-button-counter").text("");
+  $('#commandBox').val("");
   $('button[type=button]').prop('disabled', true);
   $("#hand").fadeOut();
+  $("#slack-help-text").fadeOut();
 }

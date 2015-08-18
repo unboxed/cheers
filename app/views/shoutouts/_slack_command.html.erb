@@ -1,7 +1,15 @@
-<div id="hand" class="animated bounce arrow" hidden>☟</div>
-<div class="commandContainer">
-  <p class="commandInfo">Copy and paste the below command into Slack</p>
-  <input readonly type="text" class="form-control" id="commandBox" placeholder="/vote ...">
-  <div id="mobileCommandBox"></div>
-  <button type="button" class="clear-cheers btn btn-danger" disabled>Clear and Start Over</button>
+<div class="footer">
+  <div id="hand" class="animated bounce arrow" hidden>☟</div>
+  <div class="row">
+    <div class="col-lg-4 col-md-offset-4">
+      <p id="slack-help-text" class="lead text-center" hidden>Copy and paste the below command into Slack</p>
+      <div class="input-group">
+        <input id="commandBox" type="text" class="form-control" placeholder="/vote ...">
+        <div id="mobileCommandBox"></div>
+        <span class="input-group-btn">
+          <button class="clear-cheers btn btn-danger" type="button" disabled>Clear</button>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
