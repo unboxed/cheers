@@ -35,6 +35,13 @@ RSpec.feature "Shouting out with tags" do
     expect(page).to have_content "thanks @Chaz #london"
     expect(page).to have_selector(:link_or_button, '#london')
   end
+
+  specify "tag for users location is automatically appended" do
+    user = create(:user, location: 'london')
+    send_shoutout(from: user.name, message: '@person thanks')
+    visit root_path
+    expect(page).to have_content "@person thanks #london"
+  end
 end
 
 RSpec.feature "Undoing previous shoutout" do

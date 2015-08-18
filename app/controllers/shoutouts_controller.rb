@@ -42,15 +42,17 @@ class ShoutoutsController < ApplicationController
       return render text: "Share the love! You need to mention someone. #{root_url}help"
     end
 
+    message = params[:text].strip + " ##{user.location}"
+
     shoutout = Shoutout.create(
       sender: params[:user_name],
-      recipients: params[:text]
+      message: message,
+      recipients: message
                     .scan(/(@(\w+|\.)+)/)
                     .map(&:first).map { |r| r[1..-1] },
-      message: params[:text].strip,
-      tag_list: params[:text]
-                    .scan(/(#(\w+)+)/)
-                    .map(&:first).map { |t| t[1..-1] }.join(', ')
+      tag_list: message
+                  .scan(/(#(\w+)+)/)
+                  .map(&:first).map { |t| t[1..-1] }.join(', ')
     )
 
     render text: "Shoutout to #{shoutout.recipients.join(' & ')} saved! Visit #{root_url} to see your shoutout."
