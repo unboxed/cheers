@@ -19,13 +19,14 @@ var ids = [];
 $(document).ready(function() {
   $(".cheer-button").click(function() {
     $(this).addClass("btn-success");
+    $(this).removeClass("btn-default");
     ids.push(this.id);
     $('#b' + this.id).text(countOccurrences(this.id).toString());
     updateCommand();
     updateButtons();
   });
 
-  $('#slackCommandModal').on('hidden.bs.modal', function (e) {
+  $(".clear-cheers").click(function() {
     clearCheers();
   });
 
@@ -45,11 +46,13 @@ function updateCommand() {
 
 function updateButtons() {
   if (ids.length === 3) {
-    $('button[type=submit]').prop('disabled', true);
-    $(".clear-cheers").css("display", "block");
+    $('button.btn-default[type=submit]').animate({opacity:0})
+                                        .prop('disabled', true);
+    $('button.btn-success[type=submit]').prop('disabled', true);
     $('#slackCommandModal').modal('show')
+    $("#hand").fadeIn();
   } else {
-    $('button[type=submit]').prop('disabled', false);
+    $('button[type=button]').prop('disabled', false);
   }
 }
 
@@ -67,7 +70,11 @@ function clearCheers() {
   ids = [];
   updateCommand();
   updateButtons();
-  $(".clear-cheers").css("display", "none");
-  $('button[type=submit]').removeClass("btn-success");
+  $('button.btn-success[type=submit]').addClass("btn-default");
+  $('button[type=submit]').removeClass("btn-success")
+                          .animate({opacity:1})
+                          .prop('disabled', false);
   $(".cheer-button-counter").text("");
+  $('button[type=button]').prop('disabled', true);
+  $("#hand").fadeOut();
 }
