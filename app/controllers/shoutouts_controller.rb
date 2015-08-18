@@ -14,11 +14,8 @@ class ShoutoutsController < ApplicationController
   end
 
   def reveal
-    if params[:tag]
-      @shoutouts = Shoutout.tagged_with(params[:tag]).winners_since_sunday_morning
-    else
-      @shoutouts = Shoutout.winners_since_sunday_morning
-    end
+    @shoutouts = Shoutout.winners_since_sunday_morning(params[:tag])
+    @winners = Shoutout.winning_people_and_shoutouts(params[:tag])
     return redirect_to root_path, flash: { error: 'No Shoutouts '} if @shoutouts.empty?
   end
 
