@@ -6,9 +6,10 @@
         <h1 class="title">Shoutout of the Week!</h1>
       </div>
     </div>
-    <% @shoutouts.each do |s| %>
-      <div class="row">
-        <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Winning Shoutouts</h2>
+        <% @shoutouts.each do |s| %>
           <p class="reveal-meta">
             <strong><%= s.sender %></strong> made a shoutout to
             <%= format_recipients(s.recipients).html_safe %>
@@ -22,8 +23,24 @@
               <%= highlight(s.message, s.recipients, s.tags).html_safe %>
             </p>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+      <div class="col-md-6">
+        <h2>Winning People</h2>
+        <% @winners.each do |w| %>
+          <p class="reveal-meta">
+            <strong><%= w[:name] %></strong>
+          </p>
+          <% w[:shoutouts].each do |s| %>
+            <div class="cheer well">
+              <p class="lead text-center reveal-message">
+                <%= highlight(s.message, s.recipients, s.tags).html_safe %>
+              </p>
+            </div>
+            <br/>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
