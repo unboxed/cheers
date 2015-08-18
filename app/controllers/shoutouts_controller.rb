@@ -33,14 +33,14 @@ class ShoutoutsController < ApplicationController
       if Shoutout.undo_latest_for_user(params[:user_name])
         return render text: 'Shoutout undone!'
       else
-        return render text: 'How about doing something first? #{root_url}help'
+        return render text: "How about doing something first? #{root_url} help"
       end
     end
 
     if params[:text].include?(params[:user_name])
-      return render text: "Share the love, you can't shoutout yourself! #{root_url}help"
+      return render text: "Share the love, you can't shoutout yourself! #{root_url} help"
     elsif !params[:text].match(/@\w+/)
-      return render text: "Share the love! You need to mention someone. #{root_url}help"
+      return render text: "Share the love! You need to mention someone. #{root_url} help"
     end
 
     message = params[:text].strip + " ##{user.location}"
