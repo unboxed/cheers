@@ -130,6 +130,10 @@ hr {
   height: auto;
 }
 
+.emoji {
+  max-height: 30px;
+}
+
 footer {
   position: fixed;
   bottom: 0px;

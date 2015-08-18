@@ -15,9 +15,20 @@ module ShoutoutsHelper
     end
   end
 
+  def draw_emoji(message)
+    message.tap do |message|
+      message.scan(/:\w+:/).each do |emoji|
+        next unless EMOJI[emoji[1..-2].to_sym]
+        image = "<img class=\"emoji\" src=\"#{EMOJI[emoji[1..-2].to_sym]}\">"
+        message.gsub!(emoji, image)
+      end
+    end
+  end
+
   def highlight(message, names, tags)
     highlight_usernames(message, names)
     highlight_tags(message, tags)
+    draw_emoji(message)
   end
 
   def time_ago_message(time)
@@ -39,7 +50,6 @@ module ShoutoutsHelper
     end
     return list
   end
-
 
   def unique_senders_count(shoutouts)
     shoutouts.map(&:sender).uniq.size

@@ -13,7 +13,9 @@
       <% end %>
     </p>
     <div class="cheer well">
-      <p class="lead"><%= highlight(shoutout.message, shoutout.recipients, shoutout.tags).html_safe %></p>
+      <p class="lead">
+        <%= highlight(shoutout.message, shoutout.recipients, shoutout.tags).html_safe %>
+      </p>
     </div>
   </div>
 </div>
