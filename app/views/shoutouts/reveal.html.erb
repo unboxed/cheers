@@ -3,7 +3,7 @@
   <div class="reveal">
     <div class="row">
       <div class="col-md-6">
-        <h2 class="title">Winning Shoutouts</h2>
+        <h2 class="title text-center">Winning Shoutouts</h2>
         <% @shoutouts.each do |s| %>
           <p class="reveal-meta">
             <strong><%= s.sender %></strong> made a shoutout to
@@ -21,7 +21,7 @@
         <% end %>
       </div>
       <div class="col-md-6">
-        <h2 class="title">Winning People</h2>
+        <h2 class="title text-center">Winning People</h2>
         <% @winners.each do |w| %>
           <p class="reveal-meta">
             <strong><%= w[:name] %></strong>

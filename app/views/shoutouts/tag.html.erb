@@ -1,13 +1,8 @@
-<%= link_to 'Help & How To', help_path, class:  'help-button btn btn-success'%>
-
-<header>
-  <h1 class="title text-center">Three Cheers</h1>
-  <p class="subtitle text-center">hip hip hooray!</p>
-  <h1 class="tag-title text-center">#<%= @tag %></h1>
-</header>
+<%= render 'navbar', shoutouts: @shoutouts %>
 
 <div class="container">
-  <div class="tag-shoutouts">
+  <h1 class="tag-title text-center">#<%= @tag %></h1>
+  <div class="shoutouts">
     <hr>
     <% if @shoutouts.empty? %>
       <p class="text-center">All is quiet</p>
@@ -15,10 +10,6 @@
     <% @shoutouts.each do |s| %>
       <%= render 'shoutout', shoutout: s, winner: false, hide_votes: true %>
     <% end %>
-    <p class="the-end text-center">
-      the end...&nbsp;&nbsp;&nbsp;
-      <a href="https://trello.com/b/lTJyK69o/cheers">Feedback</a>
-    </p>
   </div>
 </div>
 
