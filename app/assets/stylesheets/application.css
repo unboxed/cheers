@@ -47,6 +47,7 @@ hr {
 
 .title {
   font-family: 'Pacifico', display;
+  text-align: center;
   font-size: 4em;
 }
 
@@ -169,7 +170,7 @@ footer {
 }
 
 .reveal {
-  margin: 10% auto;
+  margin: 5% auto;
 }
 
 .reveal .star {
@@ -178,14 +179,18 @@ footer {
   padding: 0px;
 }
 
+.reveal .well {
+  padding: 10px 5px;
+}
+
 .reveal-meta {
   margin: 30px 0px;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .reveal-message {
-  font-size: 4em;
+  font-size: 2em;
 }
 
 .reveal-message mark {
