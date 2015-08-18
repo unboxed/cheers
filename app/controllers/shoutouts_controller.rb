@@ -36,7 +36,7 @@ class ShoutoutsController < ApplicationController
       if Shoutout.undo_latest_for_user(params[:user_name])
         return render text: 'Shoutout undone!'
       else
-        return render text: 'How about doing something first? #{root_url}help'
+        return render text: "How about doing something first? #{root_url}help"
       end
     end
 
