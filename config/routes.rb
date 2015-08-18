@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/admin' => 'shoutouts#admin'
   get '/tag/:tag' => 'shoutouts#tag'
   get '/reveal' => 'shoutouts#reveal'
+  get '/reveal/:tag' => 'shoutouts#reveal'
   get 'help' => 'static#help'
 
   # Example of regular route:
