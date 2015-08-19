@@ -17,10 +17,10 @@ module ShoutoutsHelper
 
   def draw_emoji(message)
     message.tap do |message|
-      message.scan(/:\w+:/).each do |emoji|
-        next unless EMOJI[emoji[1..-2].to_sym]
-        image = "<img class=\"emoji\" src=\"#{EMOJI[emoji[1..-2].to_sym]}\">"
-        message.gsub!(emoji, image)
+      message.scan(/:\w+:/).each do |emoji_alias|
+        if emoji = Emoji.find_by_alias(emoji_alias[1..-2])
+          message.gsub!(emoji_alias, emoji.raw)
+        end
       end
     end
   end

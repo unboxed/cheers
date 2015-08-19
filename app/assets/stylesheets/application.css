@@ -130,10 +130,6 @@ hr {
   height: auto;
 }
 
-.emoji {
-  max-height: 30px;
-}
-
 .commandContainer {
   padding: 20px;
   background-color: white;
