@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-11">
     <p>
-      <strong><%= shoutout.sender %></strong> made a shoutout to
+      <strong><%= shoutout.sender %></strong> cheered for
       <%= format_recipients(shoutout.recipients).html_safe %>
       <% unless hide_votes %>
         🎉<%= shoutout.cheers.size %>

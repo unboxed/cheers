@@ -3,10 +3,10 @@
   <div class="reveal">
     <div class="row">
       <div class="col-md-6">
-        <h2 class="title text-center">Winning Shoutouts</h2>
+        <h2 class="title text-center">Winning Cheers</h2>
         <% @shoutouts.each do |s| %>
           <p class="reveal-meta">
-            <strong><%= s.sender %></strong> made a shoutout to
+            <strong><%= s.sender %></strong> cheered for
             <%= format_recipients(s.recipients).html_safe %>
 
             <% unless s.cheers.empty? %>

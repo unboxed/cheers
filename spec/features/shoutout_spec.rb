@@ -5,14 +5,14 @@ RSpec.feature "Shouting out to another person" do
     response = send_shoutout(from: "Jeff", message: "thanks @Bob for all the fish")
     visit root_path
     expect(page).to have_content "thanks @Bob for all the fish"
-    expect(page).to have_content "Jeff made a shoutout to Bob"
+    expect(page).to have_content "Jeff cheered for Bob"
     expect(page).to have_content "1m ago"
-    expect(response.body).to include("Shoutout to Bob saved! Visit http://example.org/ to see your shoutout.")
+    expect(response.body).to include('You cheered for Bob! Visit http://example.org/ to see your cheer.')
   end
 
   specify "responds appropriately when attempting to self shoutout" do
     response = send_shoutout(from: "Jeff", message: "thx @Jeff")
-    expect(response.body).to include("Share the love, you can't shoutout yourself!")
+    expect(response.body).to include("Share the love, you can't cheer for yourself!")
   end
 
   specify "responds appropriately when no one is mentioned in message" do
@@ -50,7 +50,7 @@ RSpec.feature "Undoing previous shoutout" do
     response = send_shoutout(from: "Jeff", message: "undo")
     visit root_path
     expect(page).to_not have_content "thx to @Bob"
-    expect(response.body).to include("Shoutout undone!")
+    expect(response.body).to include("Cheer undone!")
   end
 
   specify "responds appropriately when no shoutout made" do

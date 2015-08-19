@@ -4,19 +4,21 @@
   <h1>Help</h1>
 
   <h3>Setting Your Office</h3>
-  <p>First you'll need to set your office, this means your shoutouts can be correctly classified.</p>
-  <pre><strong>/myoffice</strong> london|capetown</pre>
+  <p>First you'll need to set your office, this means your cheers can be correctly classified.</p>
+  <pre><strong>/myoffice</strong> london</pre>
+  <p>or:</p>
+  <pre><strong>/myoffice</strong> capetown</pre>
 
-  <h3>Shouting Out</h3>
-  <p>During the week shoutout to people who helped you out.</p>
-  <pre><strong>/shoutout</strong> <em>@person</em> saved me a ton of time with all the things. Thanks!</pre>
+  <h3>Cheering</h3>
+  <p>During the week cheer for people who helped you out.</p>
+  <pre><strong>/cheer</strong> <em>@person</em> saved me a ton of time with all the things. Thanks!</pre>
 
   <p>Made a mistake? Change the course of history with:</p>
-  <pre><strong>/shoutout</strong> undo</pre>
+  <pre><strong>/cheer</strong> undo</pre>
 
   <h3>Voting</h3>
-  <p>At the end of the week take a look at all the shoutouts on this page and vote on 3 favorites. Click the buttons on this page to build the <code>/vote</code> command. It should to look something like this:</p>
-  <pre><strong>/vote</strong> #1 #2 #3</pre>
+  <p>At the end of the week take a look at all the cheers on this page and vote on 3 favorites. Click the buttons on this page to build the <code>/vote</code> command. It should to look something like this:</p>
+  <pre><strong>/vote</strong> <%= (100..200).to_a.shuffle.take(3).join(' #').prepend('#') %></pre>
 
   <p>Made another mistake? You can <code>undo</code> the latest vote and <code>clear</code> all votes like this:</p>
   <pre><strong>/vote</strong> undo</pre>
