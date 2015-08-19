@@ -26,8 +26,10 @@ class ShoutoutsController < ApplicationController
 
   def create
     unless (user = User.find_or_create_by_name(params[:user_name])).location
-      render text: "Please enter `/myoffice london` or `/myoffice capetown`.
-                    Then enter `/shoutout #{params[:text]}` again." and return
+      render text: [
+        "Please enter `/myoffice london` or `/myoffice capetown`.",
+        "Then enter `/shoutout #{params[:text]}` again."
+      ].join("\n") and return
     end
 
     if params[:text].match(/undo|clear/)
