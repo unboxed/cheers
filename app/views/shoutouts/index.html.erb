@@ -1,17 +1,7 @@
 <%= render 'navbar', shoutouts: @shoutouts %>
 
 <div class="container">
-  <div class="shoutouts">
-    <hr>
-
-    <% if @shoutouts.empty? %>
-      <p class="text-center">All is quiet</p>
-    <% end %>
-
-    <% @shoutouts.each do |s| %>
-      <%= render 'shoutout', shoutout: s, winner: false, hide_votes: true %>
-    <% end %>
-  </div>
+  <%= render 'voting_list', shoutouts: @shoutouts  %>
 </div>
 
 <footer>

@@ -1,0 +1,9 @@
+<div class="shoutouts">
+  <% if @shoutouts.empty? %>
+    <p class="text-center">There are no cheers for this week yet 😿</p>
+  <% end %>
+  <hr>
+  <% @shoutouts.each do |s| %>
+    <%= render 'shoutout', shoutout: s, winner: false, hide_votes: true %>
+  <% end %>
+</div>
