@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def location_missing
-    render text: "Please enter `/myoffice OFFICE_NAME` e.g. `/myoffice london`.
+    render text: "Please enter `/myoffice london` or `/myoffice capetown`.
                   Then enter `/shoutout #{params[:text]}` again."
   end
 
