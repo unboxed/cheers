@@ -186,6 +186,11 @@ hr {
   margin-top: 5px;
 }
 
+.tutorial-image {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 #confetti{
   position: absolute;
   left: 0;
