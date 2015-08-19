@@ -2,6 +2,9 @@
 
 <div class="container">
   <h1 class="tag-title text-center">#<%= @tag %></h1>
+  <p class="votesRemaining">
+    <span id="votesRemaining" class="label label-success">3 votes remaining</span>
+  <p>
   <%= render 'voting_list', shoutouts: @shoutouts  %>
 </div>
 

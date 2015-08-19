@@ -24,6 +24,7 @@ $(document).ready(function() {
     $('#b' + this.id).text(countOccurrences(this.id).toString());
     updateCommand();
     updateButtons();
+    updateRemaining();
   });
 
   $(".clear-cheers").click(function() {
@@ -43,6 +44,19 @@ function updateCommand() {
   command = command.trim();
   $('#commandBox').val(command);
   $('#mobileCommandBox').text(command);
+}
+
+function updateRemaining() {
+  var remaining = 3 - ids.length;
+  var votesText = " votes remaining";
+  if (remaining === 1) {
+    var votesText = " vote remaining";
+  }
+  if (remaining === 0) {
+    var remaining = "No";
+    $('#votesRemaining').addClass("label-danger");
+  }
+  $('#votesRemaining').text(remaining + votesText);
 }
 
 function updateButtons() {
@@ -73,6 +87,8 @@ function clearCheers() {
   ids = [];
   updateCommand();
   updateButtons();
+  updateRemaining();
+  $('#votesRemaining').removeClass("label-danger");
   $('button.btn-success[type=submit]').addClass("btn-default");
   $('button[type=submit]').removeClass("btn-success")
                           .animate({opacity:1})
