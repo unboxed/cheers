@@ -26,7 +26,8 @@ class ShoutoutsController < ApplicationController
 
   def create
     unless (user = User.find_or_create_by_name(params[:user_name])).location
-      redirect_to users_location_missing_path(text: params[:text]) and return
+      render text: "Please enter `/myoffice london` or `/myoffice capetown`.
+                    Then enter `/shoutout #{params[:text]}` again." and return
     end
 
     if params[:text].match(/undo|clear/)

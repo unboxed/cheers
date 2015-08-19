@@ -1,9 +1,4 @@
 class UsersController < ApplicationController
-  def location_missing
-    render text: "Please enter `/myoffice london` or `/myoffice capetown`.
-                  Then enter `/shoutout #{params[:text]}` again."
-  end
-
   def set_location
     user = User.find_or_create_by_name(params[:user_name])
     location = params[:text].strip.downcase.split(/\s+/).first

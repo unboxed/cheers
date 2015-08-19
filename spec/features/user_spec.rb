@@ -4,7 +4,7 @@ RSpec.feature 'Users require location to shoutout' do
   specify 'users without location cannot shoutout' do
     user = create(:user, location: nil)
     response = post '/shoutout', user_name: user.name, text: '@person, thanks'
-    expect(response.location).to include('/users/location_missing')
+    expect(response.body).to include('Please enter `/myoffice london`')
   end
 
   specify 'users with a location are able to shoutout' do
