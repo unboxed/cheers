@@ -1,12 +1,18 @@
 <% if shoutouts && !shoutouts.empty? %>
-  <strong><%= shoutouts.size %></strong> shoutouts
-  sent from <strong><%= unique_senders_count(shoutouts) %></strong>
-  <span class="glyphicon glyphicon-user"></span>
+  <span class="label label-primary"><%= shoutouts.size %></span>
+  cheers made by
+  <span class="label label-info">
+    <%= unique_senders_count(shoutouts) %>
+    <span class="glyphicon glyphicon-user"></span>
+  </span>&nbsp;
   to
-  <strong><%= unique_recipients_count(shoutouts) %></strong>
-  <span class="glyphicon glyphicon-user"></span>
-  this week.
+  <span class="label label-info">
+    <%= unique_recipients_count(shoutouts) %>
+    <span class="glyphicon glyphicon-user"></span>
+  </span>&nbsp;
+  this week
   <% if (count = cheer_count(shoutouts)) > 0 %>
-    <%= count %> 🎉
+    -
+    <span class="label label-primary"><%= count %></span> 🎉
   <% end %>
 <% end %>
