@@ -77,8 +77,9 @@ function clearCheers() {
   $('button[type=submit]').removeClass("btn-success")
                           .animate({opacity:1})
                           .prop('disabled', false);
-  $('#commandBox').val("");
   $('button[type=button]').prop('disabled', true);
+  $('#commandBox').val("");
   $("#hand").fadeOut();
   $("#slack-help-text").fadeOut();
+  $(".cheer-button-counter").text("");
 }
