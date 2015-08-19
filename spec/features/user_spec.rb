@@ -37,5 +37,10 @@ RSpec.feature 'User can update location' do
     response = post '/users/set_location', user_name: 'new_user', text: 'london'
     expect(response.body).to include('3 others')
   end
+
+  specify 'users can only set location to london or capetown' do
+    response = post '/users/set_location', user_name: 'new_user', text: 'berlin'
+    expect(response.body).to include('Hmm...')
+  end
 end
 

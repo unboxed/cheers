@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
     if user.location == location
       render text: "But you're already in #{location}?" and return
+    elsif !%w(london capetown mordor).include?(location)
+      render text: 'Hmm... try `london` or `capetown`' and return
     end
 
     user.update_attribute(:location, location)
