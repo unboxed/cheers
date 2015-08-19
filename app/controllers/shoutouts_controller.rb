@@ -22,6 +22,7 @@ class ShoutoutsController < ApplicationController
   def tag
     @tag = params[:tag]
     @shoutouts = Shoutout.tagged_with(params[:tag])
+                         .reverse
   end
 
   def create
