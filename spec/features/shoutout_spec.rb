@@ -36,6 +36,16 @@ RSpec.feature "Shouting out with tags" do
     expect(page).to have_selector(:link_or_button, '#london')
   end
 
+  specify "only shows shoutouts for the last week" do
+    shoutout = create(:shoutout,
+                      message: "Old Shoutout",
+                      tag_list: "london",
+                      created_at: 7.days.ago)
+
+    visit('/tag/london')
+    expect(page).to_not have_content "Old Shoutout"
+  end
+
   specify "tag for users location is automatically appended" do
     user = create(:user, location: 'london')
     send_shoutout(from: user.name, message: '@person thanks')

@@ -21,7 +21,9 @@ class ShoutoutsController < ApplicationController
 
   def tag
     @tag = params[:tag]
-    @shoutouts = Shoutout.tagged_with(params[:tag]).order('created_at DESC')
+    @shoutouts = Shoutout.since_sunday_morning
+      .tagged_with(params[:tag])
+      .order('created_at DESC')
   end
 
   def create
