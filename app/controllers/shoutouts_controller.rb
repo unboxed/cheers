@@ -60,6 +60,28 @@ class ShoutoutsController < ApplicationController
                   .map(&:first).map { |t| t[1..-1] }.join(', ')
     )
 
+    if shoutout.tag_list.include?("london")
+      slack_client.chat_postMessage(
+        channel: Settings.slack.london,
+        text: "@#{params[:user_name]} cheered: #{message}\nSee it, and other cheers at #{root_url}!",
+        as_user: true
+      )
+    end
+
+    if shoutout.tag_list.include?("capetown")
+      slack_client.chat_postMessage(
+        channel: Settings.slack.cape_town,
+        text: "@#{params[:user_name]} cheered: #{message}\nSee it, and other cheers at #{root_url}!",
+        as_user: true
+      )
+    end
+
     render text: "You cheered for #{shoutout.recipients.join(' & ')}! Visit #{root_url} to see your cheer."
+  end
+
+  private
+
+  def slack_client
+    @_client ||= Slack::Client.new
   end
 end

@@ -8,6 +8,7 @@ gem "acts-as-taggable-on", "~> 3.4"
 gem "config"
 gem "gemoji"
 gem "rails", "4.2.2"
+gem "slack-api"
 
 group :production do
   gem "pg"
