@@ -7,7 +7,7 @@ RSpec.feature "Reviewing shoutouts in the admin area" do
     2.times { create(:cheer, sender: "Jeff", shoutout: shoutout1) }
     3.times { create(:cheer, sender: "Chaz", shoutout: shoutout2) }
 
-    page.driver.browser.basic_authorize('cheerybot', 'share the love')
+    page.driver.browser.basic_authorize(Settings.admin.username, Settings.admin.password)
     visit admin_path
 
     expect(page.text).to match(/thx to @Kole.*thx to @Bob/)
