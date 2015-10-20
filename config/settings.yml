@@ -1,4 +1,7 @@
 admin:
   username: <%= ENV.fetch("ADMIN_USERNAME") %>
   password: <%= ENV.fetch("ADMIN_PASSWORD") %>
-
+slack:
+  token: <%= ENV.fetch("SLACK_TOKEN") %>
+  london: <%= ENV.fetch("SLACK_LONDON_ROOM") %>
+  cape_town: <%= ENV.fetch("SLACK_CAPE_TOWN_ROOM") %>
