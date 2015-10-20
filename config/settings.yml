@@ -1,0 +1,4 @@
+admin:
+  username: <%= ENV.fetch("ADMIN_USERNAME") %>
+  password: <%= ENV.fetch("ADMIN_PASSWORD") %>
+
