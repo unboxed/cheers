@@ -1,15 +1,6 @@
 class ShoutoutsController < ApplicationController
-  http_basic_authenticate_with name: Settings.admin.username, password: Settings.admin.password, only: :admin
-
   def index
     @shoutouts = Shoutout.since_sunday_morning
-  end
-
-  def admin
-    @shoutouts = Shoutout.since_sunday_morning
-      .sort_by { |s| s.cheers.size }
-      .reverse
-    @winning_count = @shoutouts.first.cheers.size unless @shoutouts.empty?
   end
 
   def reveal
@@ -61,19 +52,11 @@ class ShoutoutsController < ApplicationController
     )
 
     if shoutout.tag_list.include?("london")
-      slack_client.chat_postMessage(
-        channel: Settings.slack.london,
-        text: "@#{params[:user_name]} cheered: #{message}\nSee it, and other cheers at #{root_url}!",
-        as_user: true
-      )
+      slack.post_message(Settings.slack.london, cheered_notification_message_for_channel(message))
     end
 
     if shoutout.tag_list.include?("capetown")
-      slack_client.chat_postMessage(
-        channel: Settings.slack.cape_town,
-        text: "@#{params[:user_name]} cheered: #{message}\nSee it, and other cheers at #{root_url}!",
-        as_user: true
-      )
+      slack.post_message(Settings.slack.cape_town, cheered_notification_message_for_channel(message))
     end
 
     render text: "You cheered for #{shoutout.recipients.join(' & ')}! Visit #{root_url} to see your cheer."
@@ -81,7 +64,11 @@ class ShoutoutsController < ApplicationController
 
   private
 
-  def slack_client
-    @_client ||= Slack::Client.new
+  def cheered_notification_message_for_channel(message)
+    "@#{params[:user_name]} cheered: #{message}\nSee it, and other cheers at #{root_url}!"
+  end
+
+  def slack
+    @_slack ||= SlackService.new
   end
 end
