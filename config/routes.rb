@@ -10,11 +10,14 @@ Rails.application.routes.draw do
   get '/users/location_missing' => 'users#location_missing'
   post '/users/set_location' => 'users#set_location'
 
-  get '/admin' => 'shoutouts#admin'
   get '/tag/:tag' => 'shoutouts#tag'
   get '/reveal' => 'shoutouts#reveal'
   get '/reveal/:tag' => 'shoutouts#reveal'
   get 'help' => 'static#help'
+
+  namespace :admin do
+    root 'home#index'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,15 +1,6 @@
 class ShoutoutsController < ApplicationController
-  http_basic_authenticate_with name: Settings.admin.username, password: Settings.admin.password, only: :admin
-
   def index
     @shoutouts = Shoutout.since_sunday_morning
-  end
-
-  def admin
-    @shoutouts = Shoutout.since_sunday_morning
-      .sort_by { |s| s.cheers.size }
-      .reverse
-    @winning_count = @shoutouts.first.cheers.size unless @shoutouts.empty?
   end
 
   def reveal
