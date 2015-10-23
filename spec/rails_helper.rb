@@ -27,6 +27,10 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:each, type: :feature) do
+    allow_any_instance_of(SlackService).to receive(:post_message)
+  end
+
   def app
     Rails.application
   end
