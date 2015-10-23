@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "2.2.2"
 
+gem "pg"
+
 gem "dotenv-rails", require: "dotenv/rails-now"
 
 gem "acts-as-taggable-on", "~> 3.4"
@@ -11,7 +13,6 @@ gem "rails", "4.2.2"
 gem "slack-api"
 
 group :production do
-  gem "pg"
   gem "rails_12factor"
 end
 
@@ -30,6 +31,5 @@ group :development, :test do
   gem "rspec-rails", "~> 3.2.0"
   gem "shoulda-matchers"
   gem "pry"
-  gem "sqlite3"
   gem "web-console", "~> 2.0"
 end

@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150817151214) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cheers", force: :cascade do |t|
     t.integer  "shoutout_id"
     t.string   "sender"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150817151214) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "cheers", ["shoutout_id"], name: "index_cheers_on_shoutout_id"
+  add_index "cheers", ["shoutout_id"], name: "index_cheers_on_shoutout_id", using: :btree
 
   create_table "shoutouts", force: :cascade do |t|
     t.string   "sender"
@@ -41,15 +44,15 @@ ActiveRecord::Schema.define(version: 20150817151214) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -58,4 +61,5 @@ ActiveRecord::Schema.define(version: 20150817151214) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cheers", "shoutouts"
 end
