@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'home#index'
+    resources :metrics, only: :index
   end
 
   # Example of regular route:

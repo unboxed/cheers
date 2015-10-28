@@ -1,0 +1,62 @@
+<%= render 'navbar', shoutouts: nil, admin_view: true  %>
+<div class="container">
+  <h1 class="text-center">Metrics</h1>
+  <div id="chart">
+     <svg></svg>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function() {
+      addGraph();
+    });
+
+    function addGraph(){
+      nv.addGraph(function() {
+          var chart = nv.models.lineWithFocusChart();
+
+          chart.xAxis.tickFormat(function(d) {
+              return d3.time.format('%x')(new Date(d * 1000))
+          });
+          chart.x2Axis.tickFormat(function(d) {
+              return d3.time.format('%x')(new Date(d * 1000))
+          });
+
+          chart.lines2.dispatch.on('elementClick', function(e){
+              console.log('element: ' + e.value);
+              console.dir(e.point);
+          });
+
+          chart.useInteractiveGuideline(true);
+
+          d3.select('#chart svg')
+              .datum(metricsData())
+              .call(chart);
+
+           nv.utils.windowResize(chart.update);
+
+          return chart;
+      });
+    }
+
+    function metricsData() {
+      return [
+        {
+          values: <%= @metrics.cheers_by_week.html_safe %>,
+          key: 'Number of Cheers',
+        },
+        {
+          values: <%= @metrics.people_cheering_by_week.html_safe %>,
+          key: 'People Cheering',
+        },
+        {
+          values: <%= @metrics.shoutouts_by_week.html_safe %>,
+          key: 'Number of Shoutouts',
+        },
+        {
+          values: <%= @metrics.people_doing_shoutouts_by_week.html_safe %>,
+          key: 'People doing Shoutouts',
+        }]
+    }
+</script>

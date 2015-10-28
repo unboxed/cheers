@@ -208,6 +208,17 @@ hr {
   display: none;
 }
 
+/* metrics */
+svg {
+  display: block;
+}
+#chart, svg {
+  margin: 0px;
+  padding: 0px;
+  height: 500px;
+  width: 100%;
+}
+
 @media only screen and (max-width: 667px) {
   hr {
     margin: 5px 0px;
