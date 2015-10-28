@@ -16,8 +16,10 @@
         <li><a href="https://trello.com/b/lTJyK69o/cheers">Feedback <i class="glyphicon glyphicon-new-window"></i></a></li>
         <li class="active"><%= link_to 'London', '/tag/london' %></li>
         <li class="active"><%= link_to 'Cape Town', '/tag/capetown' %></li>
+        <%= content_tag 'li' do %>
+           <%= link_to 'Metrics', admin_metrics_path %>
+        <% end if admin_view %>
       </ul>
-
       <ul class="nav navbar-nav navbar-right">
         <li>
           <p class="navbar-text"><%= render 'shoutouts/summary', shoutouts: shoutouts %></p>
