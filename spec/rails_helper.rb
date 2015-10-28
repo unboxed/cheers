@@ -27,6 +27,14 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:all) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:all) do
+    DatabaseCleaner.clean
+  end
+
   config.before(:each, type: :feature) do
     allow_any_instance_of(SlackService).to receive(:post_message)
   end
