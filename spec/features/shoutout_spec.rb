@@ -13,6 +13,20 @@ RSpec.feature "Shouting out to another person" do
   specify "responds appropriately when attempting to self shoutout" do
     response = send_shoutout(from: "Jeff", message: "thx @Jeff")
     expect(response.body).to include("Share the love, you can't cheer for yourself!")
+    response = send_shoutout(from: "Jeff", message: "thx @Jeff for all the cheese")
+    expect(response.body).to include("Share the love, you can't cheer for yourself!")
+    response = send_shoutout(from: "Jeff", message: "thx @Jeff, that cheese was great!")
+    expect(response.body).to include("Share the love, you can't cheer for yourself!")
+  end
+
+  specify "accepts words containing name in shoutout text" do
+    response = send_shoutout(from: "tim", message: "Thx @Bob for helping with the estimate!")
+    expect(response.body).to include('You cheered for Bob! Visit http://example.org/ to see your cheer.')
+  end
+
+  specify "accepts other users that also contain name in shoutout text" do
+    response = send_shoutout(from: "tim", message: "Thx @timothy for helping with the estimate!")
+    expect(response.body).to include('You cheered for timothy! Visit http://example.org/ to see your cheer.')
   end
 
   specify "responds appropriately when no one is mentioned in message" do

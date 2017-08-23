@@ -32,7 +32,10 @@ class ShoutoutsController < ApplicationController
       end
     end
 
-    if params[:text].include?(params[:user_name])
+    recipients = params[:text]
+                    .scan(/(@(\w+|\.)+)/)
+                    .map(&:first).map { |r| r[1..-1] }
+    if (recipients.include?(params[:user_name]))
       return render text: "Share the love, you can't cheer for yourself! #{root_url}help"
     elsif !params[:text].match(/@\w+/)
       return render text: "Share the love! You need to mention someone. #{root_url}help"
@@ -43,9 +46,7 @@ class ShoutoutsController < ApplicationController
     shoutout = Shoutout.create(
       sender: params[:user_name],
       message: message,
-      recipients: message
-                    .scan(/(@(\w+|\.)+)/)
-                    .map(&:first).map { |r| r[1..-1] },
+      recipients: recipients,
       tag_list: message
                   .scan(/(#(\w+)+)/)
                   .map(&:first).map { |t| t[1..-1] }.join(', ')
